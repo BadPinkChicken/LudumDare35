@@ -26,9 +26,10 @@ int handleEvents(ACharacter *character, const sf::Time& frameTime, Background &b
 	character->move(ACharacter::UP, movement, frameTime, back1.getGround(), back2.getGround());
     }
     if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-	jumped = 1;
+        jumped = 1;
     if (character->collide(back1.getGround(), back2.getGround()) == true)
-	jumped = 0;
+        jumped = 0;
+    return (0);
 }
 
 int main()
@@ -38,8 +39,9 @@ int main()
   Background          back1("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), 0);
   Background          back2("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), WIDTH);
   PowerEvent          events;
-  // AObstacle		*obstacle = new DestructibleObstacle(1200, 120, "ressources/WallExplosion2.png");
-  AObstacle		*obstacle = new JumpRabbitObstacle(1000, 200, "ressources/Avengers.png");
+  //AObstacle		*obstacle = new DestructibleObstacle(1200, 120, "ressources/WallExplosion3.png");
+ // AObstacle		*obstacle = new JumpRabbitObstacle(1000, 200, "ressources/Avengers.png");
+  AObstacle *obstacle = new JumpObstacle(120, 120, "ressources/Fire2.png");
   ACharacter	*humain = new Humain();
   ACharacter	*rabbit = new Rabbit();
   ACharacter	*hulk = new Hulk();
@@ -122,7 +124,7 @@ int main()
       back2.update(window);
       obstacle->update(window, timee);
       if (obstacle->checkPlayerCollision(*current) == true)
-	goto start;
+        goto start;
 	//exit(0);
       events.update(total.getElapsedTime().asMicroseconds(), window);
 	    current->move(ACharacter::RIGHT, sf::Vector2f(0, 0), timee, back1.getGround(), back2.getGround());

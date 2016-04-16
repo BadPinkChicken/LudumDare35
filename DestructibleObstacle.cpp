@@ -13,11 +13,11 @@ DestructibleObstacle::DestructibleObstacle(int sizeX, int sizeY, std::string con
   this->_shape->setPosition(sf::Vector2f(-1, -1));
   _sizeX = sizeX;
   _sizeY = sizeY;
-  this->_animate = new AnimatedSprite(sf::seconds(0.04), true, false);
+  this->_animate = new AnimatedSprite(sf::seconds(0.1), true, false);
   (*this->_animations)[ACharacter::RIGHT].setSpriteSheet(this->_texture);
-  this->setFrames(ACharacter::RIGHT,100, 150, 0, 8, 0);
+  this->setFrames(ACharacter::RIGHT,100, 600, 0, 8, 0);
   (*this->_animations)[ACharacter::IDLE].setSpriteSheet(this->_texture);
-  this->setFrames(ACharacter::IDLE, 100, 150, 0, 1, 0);
+  this->setFrames(ACharacter::IDLE, 100, 600, 0, 1, 0);
 
   this->_current = &((*this->_animations)[ACharacter::IDLE]);
   this->_animate->setPosition(sf::Vector2f(screenDimensions));
@@ -27,7 +27,7 @@ DestructibleObstacle::DestructibleObstacle(int sizeX, int sizeY, std::string con
 
 void DestructibleObstacle::init()
 {
-  this->_animate->setPosition(sf::Vector2f(WIDTH, 425));
+  this->_animate->setPosition(sf::Vector2f(WIDTH, -19));
 }
 
 DestructibleObstacle::~DestructibleObstacle()

@@ -93,7 +93,7 @@ void ACharacter::move(animations move, sf::Vector2f coord, const sf::Time& time,
 {
   if (move == RIGHT && this->_animate->getGlobalBounds().intersects(back1.getGlobalBounds()) == false && this->_animate->getGlobalBounds().intersects(back2.getGlobalBounds()) == false)
   {
-    coord.y = 350;
+    coord.y = this->_speed / 2;
   }
   this->_animate->play(*this->_current);
   this->_animate->move(coord * time.asSeconds());
