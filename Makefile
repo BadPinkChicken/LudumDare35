@@ -11,6 +11,7 @@ SRCS		= main.cpp \
 		SmallObstacle.cpp \
 		DestructibleObstacle.cpp \
 		PowerEvent.cpp \
+		Captain.cpp \
 		Hulk.cpp
 
 OBJS		= $(SRCS:.cpp=.o)

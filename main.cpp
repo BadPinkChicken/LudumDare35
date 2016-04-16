@@ -4,6 +4,7 @@
 #include "Humain.hpp"
 #include "PowerEvent.hpp"
 #include "Hulk.hpp"
+#include "Captain.hpp"
 #include <ctime>
 
 int main()
@@ -12,7 +13,7 @@ int main()
     Background          back1("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), 0);
     Background          back2("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), WIDTH);
     PowerEvent          events;
-    ACharacter *humain = new Hulk();
+    ACharacter *humain = new Captain();
     sf::Time timee;
     sf::Clock frameClock;
     window.setFramerateLimit(60);
