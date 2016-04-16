@@ -10,7 +10,6 @@
 int handleEvents(ACharacter *character, const sf::Time& frameTime, Background &back1, Background &back2)
 {
     sf::Vector2f movement(0.f, 0.f);
-    bool noKeyWasPressed = true;
     static int jumped;
 
     if (character->getAnimatedSprite().getPosition().y < character->getJumpHeight())
@@ -19,7 +18,6 @@ int handleEvents(ACharacter *character, const sf::Time& frameTime, Background &b
     {
         movement.y -= character->getSpeed();
         character->move(ACharacter::UP, movement, frameTime, back1.getGround(), back2.getGround());
-        noKeyWasPressed = false;
     }
     if (character->collide(back1.getGround(), back2.getGround()) == true)
         jumped = 0;
@@ -31,50 +29,31 @@ int main()
     Background          back1("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), 0);
     Background          back2("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), WIDTH);
     PowerEvent          events;
-    ACharacter *humain = new Captain();
+    ACharacter *humain = new Humain();
     sf::Time timee;
     sf::Clock frameClock;
     window.setFramerateLimit(60);
 
     srand(time(NULL));
     while (window.isOpen())
-	{
-	    timee = frameClock.restart();
-	    sf::Event   event;
-
-<<<<<<< HEAD
-           while (window.pollEvent(event))
-            {
-                if (event.type == sf::Event::Closed || event.key.code == sf::Keyboard::Escape)
-                    window.close();
-                if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::E)
-                    events.newEvent();
-            }
-            handleEvents(humain, timee, back1, back2);
-            window.clear();
-            back1.update(window);
-            back2.update(window);
-            events.update(0, window);
-            humain->move(ACharacter::RIGHT, sf::Vector2f(0, 0), timee, back1.getGround(), back2.getGround());
-            window.draw(humain->getAnimatedSprite());
-            window.display();
+    {
+       timee = frameClock.restart();
+       sf::Event   event;
+       while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed || event.key.code == sf::Keyboard::Escape)
+                window.close();
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::E)
+                events.newEvent();
         }
-=======
-	   while (window.pollEvent(event))
-	    {
-		if (event.type == sf::Event::Closed || event.key.code == sf::Keyboard::Escape)
-		    window.close();
-		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::E)
-		    events.newEvent();
-	    }
-	    window.clear();
-	    back1.update(window);
-	    back2.update(window);
-	    events.update(0, window);
-	    humain->move(ACharacter::RIGHT, sf::Vector2f(0, 0), timee);
-	    window.draw(humain->getAnimatedSprite());
-	    window.display();
-	}
->>>>>>> 53f5819dccfbbed7c3a731cc48f46e812d0b1db4
+        handleEvents(humain, timee, back1, back2);
+        window.clear();
+        back1.update(window);
+        back2.update(window);
+        events.update(0, window);
+        humain->move(ACharacter::RIGHT, sf::Vector2f(0, 0), timee, back1.getGround(), back2.getGround());
+        window.draw(humain->getAnimatedSprite());
+        window.display();
+    }
     return 0;
 }
