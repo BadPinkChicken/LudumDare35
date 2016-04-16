@@ -42,8 +42,8 @@ static bool     isInList(std::list<int> &list, int nb)
 void    PowerEvent::newEvent()
 {
     this->killEvent();
-    std::list<int> tmp;
-    std::list<int>
+    std::list<int>  tmp;
+    std::list<int>  tmp2;
     int nb = rand() % 4 + 1;
     this->time = 10;
    /* for (int i = 0; i < 3; i++){
@@ -86,10 +86,6 @@ TYPE_OBSTACLE    PowerEvent::getBlockType(int key)
 
 void    PowerEvent::killEvent()
 {
-    while (this->CurrentKeys.size() > 0)
-        this->CurrentKeys.pop_front();
-    while (this->CurrentCorresp.size() > 0)
-        this->CurrentCorresp.pop_back();
         this->CurrentPower.clear();
    /* while (this->CurrentPower.size() >0)
         this->CurrentPower.pop_front();*/

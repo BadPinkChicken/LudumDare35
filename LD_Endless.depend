@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1460807498 source:c:\users\salnik_a\documents\github\ludumdare35\main.cpp
+1460807996 source:c:\users\salnik_a\documents\github\ludumdare35\main.cpp
 	"data.hpp"
 	"back.hpp"
 	"ACharacter.hpp"
@@ -430,7 +430,7 @@
 1460807830 source:c:\users\salnik_a\documents\github\ludumdare35\powerevent.cpp
 	"PowerEvent.hpp"
 
-1460807121 c:\users\salnik_a\documents\github\ludumdare35\powerevent.hpp
+1460808054 c:\users\salnik_a\documents\github\ludumdare35\powerevent.hpp
 	"data.hpp"
 	"AObstacle.hpp"
 
