@@ -28,7 +28,7 @@ public:
   bool checkPlayerCollision(ACharacter &character);
 protected:
   sf::Vector2f _vector2f;
-  sf::Texture*  _texture;
+  sf::Texture  _texture;
   bool _isDestructible;
   TYPE_OBSTACLE _type;
   sf::Shape *_shape;

@@ -7,7 +7,7 @@
 class JumpObstacle : public AObstacle
 {
 public:
-  JumpObstacle(int x ,int y);
+  JumpObstacle(int x ,int y, std::string const &texture);
   virtual void init();
   ~JumpObstacle();
 };

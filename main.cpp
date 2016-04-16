@@ -36,16 +36,12 @@ int main()
     Background          back1("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), 0);
     Background          back2("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), WIDTH);
   PowerEvent          events;
-  AObstacle		*obstacle = new JumpObstacle(30, 10);
-  obstacle->init();
+  AObstacle		*obstacle = new JumpObstacle(120, 120, "ressources/Wall.png");
   ACharacter	*humain = new Humain();
   ACharacter	*rabbit = new Rabbit();
   ACharacter	*hulk = new Hulk();
   ACharacter	*duck = new Duck();
   ACharacter	*current = humain;
-
-  (void) rabbit;
-  (void) hulk;
   sf::Time timee;
   sf::Clock   total;
   sf::Clock frameClock;
@@ -59,6 +55,7 @@ int main()
   srand(time(NULL));
   if (!buffer.loadFromFile("ressources/Avengers.wav"))
     return -1;
+  obstacle->init();
   sound.setBuffer(buffer);
   sound.setLoop(true);
   sound.play();
