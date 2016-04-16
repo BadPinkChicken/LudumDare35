@@ -53,7 +53,6 @@ int main()
   CHARTYPE   transformation;
 
   int last_time = 500000;
-
   window.setFramerateLimit(60);
 
   srand(time(NULL));
@@ -102,7 +101,6 @@ int main()
 		events.newEvent();
 		last_time = total.getElapsedTime().asMicroseconds();
 	      }
-
       window.clear();
       back1.update(window);
       back2.update(window);
