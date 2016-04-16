@@ -7,6 +7,7 @@
 #include "Hulk.hpp"
 #include "Captain.hpp"
 #include <ctime>
+#include <SFML/Audio.hpp>
 
 int handleEvents(ACharacter *character, const sf::Time& frameTime, Background &back1, Background &back2)
 {
@@ -36,6 +37,8 @@ int main()
     sf::Time timee;
     sf::Clock   total;
     sf::Clock frameClock;
+    sf::SoundBuffer buffer;
+    sf::Sound sound;
     CHARTYPE   transformation;
 
     int last_time = 500000;
@@ -43,6 +46,11 @@ int main()
     window.setFramerateLimit(60);
 
     srand(time(NULL));
+    if (!buffer.loadFromFile("ressources/Avengers.wav"))
+      return -1;
+    sound.setBuffer(buffer);
+    sound.setLoop(true);
+    sound.play();
     while (window.isOpen())
 	{
 	    timee = frameClock.restart();
@@ -54,27 +62,28 @@ int main()
 		    window.close();
 		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::E)
 		    events.newEvent();
-	if (events.getDisplay())
-	    {
-		if (event.type == sf::Event::KeyPressed)
-		{
+		if (events.getDisplay())
+		  {
+		    if (event.type == sf::Event::KeyPressed)
+		      {
 			if (event.key.code == sf::Keyboard::Num1)
-			    transformation = events.getBlockType(1);
+			  transformation = events.getBlockType(1);
 			else if (event.key.code == sf::Keyboard::Num2)
-			    transformation = events.getBlockType(2);
+			  transformation = events.getBlockType(2);
 			else if (event.key.code == sf::Keyboard::Num3)
-			    transformation = events.getBlockType(3);
+			  transformation = events.getBlockType(3);
 			else if (event.key.code == sf::Keyboard::Num4)
-			    transformation = events.getBlockType(4);
-		}
+			  transformation = events.getBlockType(4);
+		      }
+		  }
 	    }
-	    }
+
 	    handleEvents(humain, timee, back1, back2);
 	    if (total.getElapsedTime().asMicroseconds() - last_time > 6000000 && !events.getDisplay())
-	{
-	    events.newEvent();
-	    last_time = total.getElapsedTime().asMicroseconds();
-	}
+	      {
+		events.newEvent();
+		last_time = total.getElapsedTime().asMicroseconds();
+	      }
 
 	    window.clear();
 	    back1.update(window);
