@@ -4,11 +4,12 @@ SRCS		= main.cpp \
 					ACharacter.cpp \
 					Humain.cpp \
 					AnimatedSprite.cpp \
-					Animation.cpp
-		AObstacle.cpp \
-		JumpObstacle.cpp \
-		SmallObstacle.cpp \
-		DestructibleObstacle.cpp
+					Animation.cpp \
+					back.cpp \
+					AObstacle.cpp \
+					JumpObstacle.cpp \
+					SmallObstacle.cpp \
+					DestructibleObstacle.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 

@@ -42,6 +42,7 @@ class ACharacter
       ATTACKB,
     };
   void  setFrames(animations move, int sizeX, int sizeY, int line, int maxPerLine, int begin);
+  void  move(animations move, const sf::Vector2f& coord, const sf::Time& time);
 
   protected:
     int _x;

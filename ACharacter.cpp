@@ -76,3 +76,11 @@ void ACharacter::setFrames(animations anim, int sizeX, int sizeY, int line, int 
     i += sizeX;
   }
 }
+
+void ACharacter::move(animations move, const sf::Vector2f& coord, const sf::Time& time)
+{
+  this->_animate->play(*this->_current);
+  this->_animate->move(coord * time.asSeconds());
+  this->_animate->update(time);
+}
+
