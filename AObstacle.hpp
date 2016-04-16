@@ -24,9 +24,13 @@ public:
 
 protected:
   sf::Vector2f _vector2f;
+  sf::Texture*  _texture;
   bool _isDestructible;
   TYPE_OBSTACLE _type;
   sf::Shape *shape;
+  int _x;
+  int _y;
+  int _speed;
 };
 
 #endif
