@@ -24,3 +24,10 @@ namespace patch
         return stm.str() ;
     }
 }
+
+enum    CHARTYPE{
+        DEFAUTL,
+        HULK,
+        RABBIT,
+        LITTLE
+};

@@ -96,8 +96,11 @@ int     PowerEvent::getTime() const
     return this->time;
 }
 
-TYPE_OBSTACLE    PowerEvent::getBlockType(int key)
+CHARTYPE    PowerEvent::getBlockType(int key)
 {
+    this->display = false;
+    if (DEBUG)
+        std::cout << "RECEIVED " << key << std::endl;
     switch (key){
     case 0:
         break;
@@ -113,6 +116,7 @@ TYPE_OBSTACLE    PowerEvent::getBlockType(int key)
 void    PowerEvent::killEvent()
 {
         this->CurrentPower.clear();
+        this->time = 10;
    /* while (this->CurrentPower.size() >0)
         this->CurrentPower.pop_front();*/
 }
@@ -121,8 +125,17 @@ void    PowerEvent::update(int time, sf::RenderWindow & win)
 {
     static  int last_time;
     int i = 0;
-    (void) time;
 
+    if (time - last_time > 600000)
+    {
+        this->time--;
+        last_time = time;
+    }
+    if (this->time == 0)
+    {
+        this->display = false;
+        this->killEvent();
+    }
     if (!this->display)
         return;
     this->text.setCharacterSize(64);
@@ -139,4 +152,9 @@ void    PowerEvent::update(int time, sf::RenderWindow & win)
         win.draw(*it->second);
         i++;
     }
+}
+
+bool    PowerEvent::getDisplay() const
+{
+    return this->display;
 }

@@ -24,6 +24,7 @@ private:
     void                newEvent();
     int                 getTime() const;
     void                update(int time, sf::RenderWindow &);
-    TYPE_OBSTACLE       getBlockType(int key);
+    CHARTYPE       getBlockType(int key);
     void                killEvent();
+    bool                getDisplay() const;
 };

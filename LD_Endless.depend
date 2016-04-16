@@ -1,10 +1,12 @@
 # depslib dependency file v1.0
-1460807996 source:c:\users\salnik_a\documents\github\ludumdare35\main.cpp
+1460812877 source:c:\users\salnik_a\documents\github\ludumdare35\main.cpp
 	"data.hpp"
 	"back.hpp"
 	"ACharacter.hpp"
 	"Humain.hpp"
 	"PowerEvent.hpp"
+	"Hulk.hpp"
+	"Captain.hpp"
 	<ctime>
 
 1460749928 c:\sfml2m\include\sfml\graphics.hpp
@@ -385,7 +387,7 @@
 	<string>
 	<vector>
 
-1460809897 c:\users\salnik_a\documents\github\ludumdare35\data.hpp
+1460812940 c:\users\salnik_a\documents\github\ludumdare35\data.hpp
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
@@ -429,16 +431,17 @@
 	<SFML/System.hpp>
 	"AObstacle.hpp"
 
-1460810809 source:c:\users\salnik_a\documents\github\ludumdare35\powerevent.cpp
+1460812755 source:c:\users\salnik_a\documents\github\ludumdare35\powerevent.cpp
 	"PowerEvent.hpp"
 
-1460810305 c:\users\salnik_a\documents\github\ludumdare35\powerevent.hpp
+1460812594 c:\users\salnik_a\documents\github\ludumdare35\powerevent.hpp
 	"data.hpp"
 	"AObstacle.hpp"
 	<string>
 
-1460803952 c:\users\salnik_a\documents\github\ludumdare35\acharacter.hpp
+1460813202 c:\users\salnik_a\documents\github\ludumdare35\acharacter.hpp
 	"AnimatedSprite.hpp"
+	"data.hpp"
 	<vector>
 
 1460803952 c:\users\salnik_a\documents\github\ludumdare35\animatedsprite.hpp
@@ -457,8 +460,9 @@
 1460803952 c:\users\salnik_a\documents\github\ludumdare35\humain.hpp
 	"ACharacter.hpp"
 
-1460803952 source:c:\users\salnik_a\documents\github\ludumdare35\acharacter.cpp
+1460813202 source:c:\users\salnik_a\documents\github\ludumdare35\acharacter.cpp
 	"ACharacter.hpp"
+	<iostream>
 
 1460803952 source:c:\users\salnik_a\documents\github\ludumdare35\animatedsprite.cpp
 	"AnimatedSprite.hpp"
@@ -466,7 +470,17 @@
 1460803952 source:c:\users\salnik_a\documents\github\ludumdare35\animation.cpp
 	"Animation.hpp"
 
-1460803952 source:c:\users\salnik_a\documents\github\ludumdare35\humain.cpp
+1460813202 source:c:\users\salnik_a\documents\github\ludumdare35\humain.cpp
 	"Humain.hpp"
+	"data.hpp"
+
+1460808181 c:\users\salnik_a\documents\github\ludumdare35\hulk.hpp
+	"ACharacter.hpp"
+
+1460810935 c:\users\salnik_a\documents\github\ludumdare35\captain.hpp
+	"ACharacter.hpp"
+
+1460810935 source:c:\users\salnik_a\documents\github\ludumdare35\captain.cpp
+	"Captain.hpp"
 	"data.hpp"
 
