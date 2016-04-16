@@ -9,11 +9,11 @@ Rabbit::Rabbit() : ACharacter()
   sf::Vector2i screenDimensions(200, HEIGHT - 120);
   this->_animate = new AnimatedSprite(sf::seconds(0.1), true, false);
   (*this->_animations)[RIGHT].setSpriteSheet(*this->_texture);
-  this->setFrames(RIGHT,134,128, 21, 4, 0);
+  this->setFrames(RIGHT,134,100, 21, 4, 0);
   this->_x = 0;
   this->_y = 0;
-  this->_speed = 100;
-
+  this->_speed = 1000;
+  this->_jumpHeight = 100;
   this->_current = &((*this->_animations)[RIGHT]);
   this->_animate->setPosition(sf::Vector2f(screenDimensions));
   this->_animate->play(*this->_current);
