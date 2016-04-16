@@ -41,24 +41,28 @@ static bool     isInList(std::list<int> &list, int nb)
 
 void    PowerEvent::newEvent()
 {
+    this->killEvent();
     std::list<int> tmp;
+    std::list<int>
     int nb = rand() % 4 + 1;
     this->time = 10;
    /* for (int i = 0; i < 3; i++){
         while (isInList(this->CurrentKeys, nb))
             nb = rand() % 4 + 1;
         this->CurrentKeys.push_back(nb);
-    }
+    }*/
     nb = rand() % 4;
     for (int i = 0; i < 3; i++){
         while (isInList(tmp, nb))
-            nb = rand() % 4 + 1;
+            nb = rand() % 4;
         tmp.push_back(nb);
-    }*/
-    for (std::list<int>::iterator it = tmp.begin(); it != tmp.end(); it++) {
-        this->CurrentPower.push_back(this->PowerList[*it]);
-        this->CurrentCorresp.push_back(*it);
     }
+    for (std::list<int>::iterator it = tmp.begin(); it != tmp.end(); it++) {
+        this->CurrentPower[*it] = this->PowerList[*it];
+        //this->CurrentCorresp.push_back(*it);
+    }
+    for (std::map<int, sf::Shape *>::iterator it = this->CurrentPower.begin(); it != this->CurrentPower.end(); it++)
+        std::cout << it->first << std::endl;
 }
 
 int     PowerEvent::getTime() const
@@ -86,6 +90,19 @@ void    PowerEvent::killEvent()
         this->CurrentKeys.pop_front();
     while (this->CurrentCorresp.size() > 0)
         this->CurrentCorresp.pop_back();
-    while (this->CurrentPower.size() >0)
-        this->CurrentPower.pop_back();
+        this->CurrentPower.clear();
+   /* while (this->CurrentPower.size() >0)
+        this->CurrentPower.pop_front();*/
+}
+
+void    PowerEvent::update(int time, sf::RenderWindow & win)
+{
+    int i = 0;
+    (void) time;
+    for (std::map<int, sf::Shape *>::iterator it = this->CurrentPower.begin(); it != this->CurrentPower.end(); it++)
+    {
+        it->second->setPosition(sf::Vector2f(i * 100 + 500, 200));
+        win.draw(*it->second);
+        i++;
+    }
 }

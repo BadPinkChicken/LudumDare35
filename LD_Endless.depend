@@ -1,10 +1,11 @@
 # depslib dependency file v1.0
-1460804045 source:c:\users\salnik_a\documents\github\ludumdare35\main.cpp
+1460807498 source:c:\users\salnik_a\documents\github\ludumdare35\main.cpp
 	"data.hpp"
 	"back.hpp"
 	"ACharacter.hpp"
 	"Humain.hpp"
 	"PowerEvent.hpp"
+	<ctime>
 
 1460749928 c:\sfml2m\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -426,10 +427,10 @@
 	<SFML/System.hpp>
 	"AObstacle.hpp"
 
-1460804030 source:c:\users\salnik_a\documents\github\ludumdare35\powerevent.cpp
+1460807830 source:c:\users\salnik_a\documents\github\ludumdare35\powerevent.cpp
 	"PowerEvent.hpp"
 
-1460803796 c:\users\salnik_a\documents\github\ludumdare35\powerevent.hpp
+1460807121 c:\users\salnik_a\documents\github\ludumdare35\powerevent.hpp
 	"data.hpp"
 	"AObstacle.hpp"
 

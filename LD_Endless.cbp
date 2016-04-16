@@ -54,6 +54,26 @@
 		<Linker>
 			<Add directory="C:/SFML2M/lib" />
 		</Linker>
+		<Unit filename="ACharacter.cpp" />
+		<Unit filename="ACharacter.hpp" />
+		<Unit filename="AObstacle.cpp" />
+		<Unit filename="AObstacle.hpp" />
+		<Unit filename="AnimatedSprite.cpp" />
+		<Unit filename="AnimatedSprite.hpp" />
+		<Unit filename="Animation.cpp" />
+		<Unit filename="Animation.hpp" />
+		<Unit filename="DestructibleObstacle.cpp" />
+		<Unit filename="DestructibleObstacle.hpp" />
+		<Unit filename="Humain.cpp" />
+		<Unit filename="Humain.hpp" />
+		<Unit filename="JumpObstacle.cpp" />
+		<Unit filename="JumpObstacle.hpp" />
+		<Unit filename="PowerEvent.cpp" />
+		<Unit filename="PowerEvent.hpp" />
+		<Unit filename="SmallObstacle.cpp" />
+		<Unit filename="SmallObstacle.hpp" />
+		<Unit filename="back.cpp" />
+		<Unit filename="back.hpp" />
 		<Unit filename="data.hpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
