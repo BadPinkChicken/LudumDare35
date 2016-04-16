@@ -13,7 +13,7 @@ Captain::Captain() : ACharacter()
   this->_x = 0;
   this->_y = 0;
   this->_speed = 100;
-
+  this->_strengh = false;
   this->_current = &((*this->_animations)[RIGHT]);
   this->_animate->setPosition(sf::Vector2f(screenDimensions));
   this->_animate->play(*this->_current);
