@@ -1,15 +1,21 @@
 #include "JumpObstacle.hpp"
+#include <iostream>
+#include "data.hpp"
 
-JumpObstacle::JumpObstacle() : AObstacle()
+JumpObstacle::JumpObstacle(int sizeX, int sizeY) : AObstacle()
 {
   this->_type = JUMP;
   this->_isDestructible = false;
-  this->_texture = new sf::Texture();
-  this->_texture->loadFromFile("ressources//Wall.png");
-  this->_texture->setSmooth(true);
-  this->_x = 0;
-  this->_y = 0;
-  this->_speed = 100;
+  this->_shape = new sf::RectangleShape(sf::Vector2f(sizeX, sizeY));
+  this->_shape->setPosition(sf::Vector2f(-1, -1));
+  _sizeX = sizeX;
+  _sizeY = sizeY;
+}
+
+void JumpObstacle::init()
+{
+  this->_shape->setPosition(sf::Vector2f(0, HEIGHT - 128));
+>>>>>>> animation
 }
 
 JumpObstacle::~JumpObstacle()

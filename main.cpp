@@ -6,6 +6,7 @@
 #include "PowerEvent.hpp"
 #include "Hulk.hpp"
 #include "Captain.hpp"
+#include "JumpObstacle.hpp"
 #include <ctime>
 #include <SFML/Audio.hpp>
 
@@ -40,7 +41,8 @@ int main()
     sf::SoundBuffer buffer;
     sf::Sound sound;
     CHARTYPE   transformation;
-
+    AObstacle *obstacle = new JumpObstacle(300, 100);
+    obstacle->init();
     int last_time = 500000;
 
     window.setFramerateLimit(60);
@@ -88,6 +90,7 @@ int main()
 	    window.clear();
 	    back1.update(window);
 	    back2.update(window);
+        obstacle->update(window);
 	    events.update(total.getElapsedTime().asMicroseconds(), window);
 	    humain->move(ACharacter::RIGHT, sf::Vector2f(0, 0), timee, back1.getGround(), back2.getGround());
 	    window.draw(humain->getAnimatedSprite());

@@ -7,7 +7,8 @@
 class JumpObstacle : public AObstacle
 {
 public:
-  JumpObstacle();
+  JumpObstacle(int x ,int y);
+  virtual void init();
   ~JumpObstacle();
 };
 

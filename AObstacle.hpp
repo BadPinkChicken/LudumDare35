@@ -21,16 +21,17 @@ public:
   void setDestructible(bool x);
   void setType(TYPE_OBSTACLE x);
   sf::Vector2f getVector() const;
-
+  sf::Shape &getShape();
+  virtual void init() = 0;
+  void update(sf::RenderWindow & win);
 protected:
   sf::Vector2f _vector2f;
   sf::Texture*  _texture;
   bool _isDestructible;
   TYPE_OBSTACLE _type;
-  sf::Shape *shape;
-  int _x;
-  int _y;
-  int _speed;
+  sf::Shape *_shape;
+  int _sizeX;
+  int _sizeY;
 };
 
 #endif
