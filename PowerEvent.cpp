@@ -54,25 +54,25 @@ static bool     isInList(std::list<int> &list, int nb)
 
 void    PowerEvent::newEvent()
 {
-    this->display = true;
-    this->killEvent();
-    std::list<int>  tmp;
-    std::list<int>  tmp2;
-    int i = 0;
-    int nb = rand() % 4 + 1;
-    std::string tmpString;
-    this->time = 10;
-    nb = rand() % 4;
-    for (int i = 0; i < 3; i++){
-        while (isInList(tmp, nb))
-            nb = rand() % 4;
-        tmp.push_back(nb);
+  this->display = true;
+  this->killEvent();
+  std::list<int>  tmp;
+  std::list<int>  tmp2;
+  int i = 0;
+  int nb = rand() % 4 + 1;
+  std::string tmpString;
+  this->time = 10;
+  nb = rand() % 4;
+  for (int i = 0; i < 3; i++){
+      while (isInList(tmp, nb))
+	nb = rand() % 4;
+      tmp.push_back(nb);
     }
-    nb = rand() % 4 + 1;
-    for (int i = 0; i < 3; i++){
-        while (isInList(tmp2, nb))
-            nb = rand() % 4 + 1;
-        tmp2.push_back(nb);
+  nb = rand() % 4 + 1;
+  for (int i = 0; i < 3; i++){
+      while (isInList(tmp2, nb))
+	nb = rand() % 4 + 1;
+      tmp2.push_back(nb);
     }
 
     i = 0;

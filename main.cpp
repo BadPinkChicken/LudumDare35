@@ -32,9 +32,10 @@ int handleEvents(ACharacter *character, const sf::Time& frameTime, Background &b
 int main()
 {
     sf::RenderWindow    window(sf::VideoMode(WIDTH,HEIGHT), "SFML");
+    start:
     Background          back1("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), 0);
     Background          back2("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), WIDTH);
-    PowerEvent          events;
+  PowerEvent          events;
   AObstacle		*obstacle = new JumpObstacle(30, 10);
   obstacle->init();
   ACharacter	*humain = new Humain();
@@ -106,7 +107,8 @@ int main()
       back2.update(window);
       obstacle->update(window);
       if (obstacle->checkPlayerCollision(*current) == true)
-	exit(0);
+	goto start;
+	//exit(0);
       events.update(total.getElapsedTime().asMicroseconds(), window);
 	    current->move(ACharacter::RIGHT, sf::Vector2f(0, 0), timee, back1.getGround(), back2.getGround());
 	    window.draw(current->getAnimatedSprite());

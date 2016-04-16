@@ -9,10 +9,8 @@ private:
     sf::Shape*                  backBlock;
     std::list<int>              keys;
     std::vector<sf::Shape *>    PowerList;
-    //std::list<int>              CurrentKeys;
     std::map<int, int>          CorrespKeys;
     std::map<int, sf::Shape *>  CurrentPower;
-    //std::vector<int>            CurrentCorresp;
     int                         time;
     bool                        display;
     sf::Font                    font;
