@@ -12,7 +12,7 @@ Rabbit::Rabbit() : ACharacter()
   this->setFrames(RIGHT,134,100, 21, 4, 0);
   this->_x = 0;
   this->_y = 0;
-  this->_speed = 1000;
+  this->_speed = 1200;
   this->_jumpHeight = 100;
   this->_current = &((*this->_animations)[RIGHT]);
   this->_animate->setPosition(sf::Vector2f(screenDimensions));
