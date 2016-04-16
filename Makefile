@@ -13,7 +13,8 @@ SRCS		= main.cpp \
 		PowerEvent.cpp \
 		Rabbit.cpp \
 		Captain.cpp \
-		Hulk.cpp
+		Hulk.cpp \
+		Duck.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 
