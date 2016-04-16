@@ -1,9 +1,7 @@
 # depslib dependency file v1.0
-1460785884 source:c:\users\salnik_a\documents\github\ludumdare35\main.cpp
-	<SFML/Graphics.hpp>
-	<SFML/System.hpp>
-	<SFML/Window.hpp>
+1460799409 source:c:\users\salnik_a\documents\github\ludumdare35\main.cpp
 	"data.hpp"
+	"back.hpp"
 
 1460749928 c:\sfml2m\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -383,5 +381,15 @@
 	<string>
 	<vector>
 
-1460795488 c:\users\salnik_a\documents\github\ludumdare35\data.hpp
+1460799495 c:\users\salnik_a\documents\github\ludumdare35\data.hpp
+	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<iostream>
+
+1460799481 source:c:\users\salnik_a\documents\github\ludumdare35\back.cpp
+	"back.hpp"
+
+1460797964 c:\users\salnik_a\documents\github\ludumdare35\back.hpp
+	"data.hpp"
 
