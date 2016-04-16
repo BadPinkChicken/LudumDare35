@@ -35,15 +35,20 @@ void AObstacle::setType(TYPE_OBSTACLE x)
 {
   this->_type = x;
 }
+
 sf::Shape &AObstacle::getShape()
 {
   return *this->_shape;
 }
 
+bool AObstacle::checkPlayerCollision(ACharacter &character)
+{
+  return character.getAnimatedSprite().getGlobalBounds().intersects(this->_shape->getGlobalBounds());
+}
+
 void                AObstacle::update(sf::RenderWindow & win)
 {
     sf::Vector2f    posTmp;
-
 
     posTmp = this->_shape->getPosition();
     posTmp.x -= SPEED;

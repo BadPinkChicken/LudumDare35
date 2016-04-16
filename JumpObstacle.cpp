@@ -14,8 +14,7 @@ JumpObstacle::JumpObstacle(int sizeX, int sizeY) : AObstacle()
 
 void JumpObstacle::init()
 {
-  this->_shape->setPosition(sf::Vector2f(0, HEIGHT - 128));
->>>>>>> animation
+  this->_shape->setPosition(sf::Vector2f(WIDTH, HEIGHT - 165));
 }
 
 JumpObstacle::~JumpObstacle()

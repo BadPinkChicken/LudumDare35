@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
+#include "ACharacter.hpp"
 
 enum TYPE_OBSTACLE
 {
@@ -24,6 +25,7 @@ public:
   sf::Shape &getShape();
   virtual void init() = 0;
   void update(sf::RenderWindow & win);
+  bool checkPlayerCollision(ACharacter &character);
 protected:
   sf::Vector2f _vector2f;
   sf::Texture*  _texture;

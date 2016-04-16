@@ -19,13 +19,13 @@ int handleEvents(ACharacter *character, const sf::Time& frameTime, Background &b
 	jumped = 1;
     else if (jumped != 1 && sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && character->getAnimatedSprite().getPosition().y > character->getJumpHeight())
     {
-	movement.y -= character->getSpeed();
-	character->move(ACharacter::UP, movement, frameTime, back1.getGround(), back2.getGround());
+        movement.y -= character->getSpeed();
+        character->move(ACharacter::UP, movement, frameTime, back1.getGround(), back2.getGround());
     }
     if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-	jumped = 1;
+        jumped = 1;
     if (character->collide(back1.getGround(), back2.getGround()) == true)
-	jumped = 0;
+        jumped = 0;
 }
 
 int main()
@@ -91,6 +91,8 @@ int main()
 	    back1.update(window);
 	    back2.update(window);
         obstacle->update(window);
+        if (obstacle->checkPlayerCollision(*humain) == true)
+            exit(0);
 	    events.update(total.getElapsedTime().asMicroseconds(), window);
 	    humain->move(ACharacter::RIGHT, sf::Vector2f(0, 0), timee, back1.getGround(), back2.getGround());
 	    window.draw(humain->getAnimatedSprite());
