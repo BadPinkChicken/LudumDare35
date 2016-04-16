@@ -26,7 +26,7 @@ namespace patch
 }
 
 enum    CHARTYPE{
-        DEFAUTL,
+        DEFAULT,
         HULK,
         RABBIT,
         LITTLE

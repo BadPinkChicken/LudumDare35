@@ -7,7 +7,6 @@
 #include "Hulk.hpp"
 #include "Captain.hpp"
 #include "JumpObstacle.hpp"
-#include "JumpRabbitObstacle.hpp"
 #include "Duck.hpp"
 #include <ctime>
 #include <SFML/Audio.hpp>
@@ -21,24 +20,23 @@ int handleEvents(ACharacter *character, const sf::Time& frameTime, Background &b
 	jumped = 1;
     else if (jumped != 1 && sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && character->getAnimatedSprite().getPosition().y > character->getJumpHeight())
     {
-	movement.y -= character->getSpeed();
-	character->move(ACharacter::UP, movement, frameTime, back1.getGround(), back2.getGround());
+        movement.y -= character->getSpeed();
+        character->move(ACharacter::UP, movement, frameTime, back1.getGround(), back2.getGround());
     }
     if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-	jumped = 1;
+        jumped = 1;
     if (character->collide(back1.getGround(), back2.getGround()) == true)
-	jumped = 0;
+        jumped = 0;
 }
 
 int main()
 {
-    sf::RenderWindow    window(sf::VideoMode(WIDTH,HEIGHT), "SFML");
-    start:
-    Background          back1("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), 0);
-    Background          back2("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), WIDTH);
+  sf::RenderWindow    window(sf::VideoMode(WIDTH,HEIGHT), "SFML");
+  start:
+  Background          back1("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), 0);
+  Background          back2("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), WIDTH);
   PowerEvent          events;
-  // AObstacle		*obstacle = new JumpObstacle(120, 120, "ressources/Wall.png");
-  AObstacle		*obstacle = new JumpRabbitObstacle(200, 300, "ressources/RabbitFence.png");
+  AObstacle		*obstacle = new JumpObstacle(1, 1, "ressources/Wall.png");
   ACharacter	*humain = new Humain();
   ACharacter	*rabbit = new Rabbit();
   ACharacter	*hulk = new Hulk();
@@ -92,6 +90,22 @@ int main()
 		    transformation = events.getBlockType(3);
 		  else if (event.key.code == sf::Keyboard::Num4)
 		    transformation = events.getBlockType(4);
+
+		  switch ((int)transformation)
+		    {
+		      case 0:
+		      current = humain;
+		      break;
+		      case 1:
+		      current = hulk;
+		      break;
+		      case 2:
+		      current = rabbit;
+		      break;
+		      case 3:
+		      current = duck;
+              	      break;
+		    }
 		}
 	    }
 	}
