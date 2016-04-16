@@ -1,6 +1,7 @@
 #ifndef AOBSTACLE_HPP
 #define AOBSTACLE_HPP
 
+#include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
 enum TYPE_OBSTACLE
@@ -25,6 +26,7 @@ protected:
   sf::Vector2f _vector2f;
   bool _isDestructible;
   TYPE_OBSTACLE _type;
+  sf::Shape *shape;
 };
 
 #endif

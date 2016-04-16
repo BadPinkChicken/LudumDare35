@@ -1,7 +1,10 @@
 # depslib dependency file v1.0
-1460799409 source:c:\users\salnik_a\documents\github\ludumdare35\main.cpp
+1460804045 source:c:\users\salnik_a\documents\github\ludumdare35\main.cpp
 	"data.hpp"
 	"back.hpp"
+	"ACharacter.hpp"
+	"Humain.hpp"
+	"PowerEvent.hpp"
 
 1460749928 c:\sfml2m\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -381,15 +384,85 @@
 	<string>
 	<vector>
 
-1460799495 c:\users\salnik_a\documents\github\ludumdare35\data.hpp
+1460800856 c:\users\salnik_a\documents\github\ludumdare35\data.hpp
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<iostream>
+	<list>
+	<vector>
 
-1460799481 source:c:\users\salnik_a\documents\github\ludumdare35\back.cpp
+1460800714 source:c:\users\salnik_a\documents\github\ludumdare35\back.cpp
 	"back.hpp"
 
 1460797964 c:\users\salnik_a\documents\github\ludumdare35\back.hpp
+	"data.hpp"
+
+1460799557 source:c:\users\salnik_a\documents\github\ludumdare35\aobstacle.cpp
+	"AObstacle.hpp"
+
+1460801457 c:\users\salnik_a\documents\github\ludumdare35\aobstacle.hpp
+	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
+
+1460799557 source:c:\users\salnik_a\documents\github\ludumdare35\destructibleobstacle.cpp
+	"DestructibleObstacle.hpp"
+
+1460799557 c:\users\salnik_a\documents\github\ludumdare35\destructibleobstacle.hpp
+	<SFML/System.hpp>
+	"AObstacle.hpp"
+
+1460799557 source:c:\users\salnik_a\documents\github\ludumdare35\jumpobstacle.cpp
+	"JumpObstacle.hpp"
+
+1460799557 c:\users\salnik_a\documents\github\ludumdare35\jumpobstacle.hpp
+	<SFML/System.hpp>
+	"AObstacle.hpp"
+
+1460799557 source:c:\users\salnik_a\documents\github\ludumdare35\smallobstacle.cpp
+	"SmallObstacle.hpp"
+
+1460799557 c:\users\salnik_a\documents\github\ludumdare35\smallobstacle.hpp
+	<SFML/System.hpp>
+	"AObstacle.hpp"
+
+1460804030 source:c:\users\salnik_a\documents\github\ludumdare35\powerevent.cpp
+	"PowerEvent.hpp"
+
+1460803796 c:\users\salnik_a\documents\github\ludumdare35\powerevent.hpp
+	"data.hpp"
+	"AObstacle.hpp"
+
+1460803952 c:\users\salnik_a\documents\github\ludumdare35\acharacter.hpp
+	"AnimatedSprite.hpp"
+	<vector>
+
+1460803952 c:\users\salnik_a\documents\github\ludumdare35\animatedsprite.hpp
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/System/Time.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/System/Vector2.hpp>
+	"Animation.hpp"
+
+1460803952 c:\users\salnik_a\documents\github\ludumdare35\animation.hpp
+	<vector>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Texture.hpp>
+
+1460803952 c:\users\salnik_a\documents\github\ludumdare35\humain.hpp
+	"ACharacter.hpp"
+
+1460803952 source:c:\users\salnik_a\documents\github\ludumdare35\acharacter.cpp
+	"ACharacter.hpp"
+
+1460803952 source:c:\users\salnik_a\documents\github\ludumdare35\animatedsprite.cpp
+	"AnimatedSprite.hpp"
+
+1460803952 source:c:\users\salnik_a\documents\github\ludumdare35\animation.cpp
+	"Animation.hpp"
+
+1460803952 source:c:\users\salnik_a\documents\github\ludumdare35\humain.cpp
+	"Humain.hpp"
 	"data.hpp"
 

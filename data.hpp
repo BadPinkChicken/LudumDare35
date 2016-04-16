@@ -5,6 +5,8 @@
 #include <SFML/Window.hpp>
 
 #include <iostream>
+#include <list>
+#include <vector>
 
 #define DEBUG   true
 #define HEIGHT  600

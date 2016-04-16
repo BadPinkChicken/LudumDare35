@@ -4,6 +4,8 @@ Background::Background(const std::string & back, const std::string & ground, sf:
 {
     this->initialX = initialX;
     this->background = new sf::RectangleShape(sizeB);
+
+
     if (!this->backTex.loadFromFile(back))
         std::cout << "Background texture loading error" << std::endl;
     this->background->setTexture(&this->backTex);

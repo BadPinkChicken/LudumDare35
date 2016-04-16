@@ -4,12 +4,14 @@
 #include "back.hpp"
 #include "ACharacter.hpp"
 #include "Humain.hpp"
+#include "PowerEvent.hpp"
 
 int main()
 {
     sf::RenderWindow    window(sf::VideoMode(WIDTH,HEIGHT), "SFML");
     Background          back1("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), 0);
     Background          back2("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), WIDTH);
+    PowerEvent          events;
     ACharacter *humain = new Humain();
     sf::Time time;
     sf::Clock frameClock;
