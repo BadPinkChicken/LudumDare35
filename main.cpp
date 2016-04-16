@@ -19,6 +19,8 @@ int handleEvents(ACharacter *character, const sf::Time& frameTime, Background &b
         movement.y -= character->getSpeed();
         character->move(ACharacter::UP, movement, frameTime, back1.getGround(), back2.getGround());
     }
+    if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+        jumped = 1;
     if (character->collide(back1.getGround(), back2.getGround()) == true)
         jumped = 0;
 }
