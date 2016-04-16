@@ -10,6 +10,7 @@
 #include "Duck.hpp"
 #include <ctime>
 #include <SFML/Audio.hpp>
+#include "DestructibleObstacle.hpp"
 
 int handleEvents(ACharacter *character, const sf::Time& frameTime, Background &back1, Background &back2)
 {
@@ -31,12 +32,12 @@ int handleEvents(ACharacter *character, const sf::Time& frameTime, Background &b
 
 int main()
 {
-    sf::RenderWindow    window(sf::VideoMode(WIDTH,HEIGHT), "SFML");
-    start:
-    Background          back1("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), 0);
-    Background          back2("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), WIDTH);
+  sf::RenderWindow    window(sf::VideoMode(WIDTH,HEIGHT), "SFML");
+  start:
+  Background          back1("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), 0);
+  Background          back2("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), WIDTH);
   PowerEvent          events;
-  AObstacle		*obstacle = new JumpObstacle(120, 120, "ressources/Wall.png");
+  AObstacle		*obstacle = new DestructibleObstacle(1200, 120, "ressources/WallExplosion2.png");
   ACharacter	*humain = new Humain();
   ACharacter	*rabbit = new Rabbit();
   ACharacter	*hulk = new Hulk();
@@ -51,7 +52,6 @@ int main()
 
   int last_time = 500000;
   window.setFramerateLimit(60);
-
   srand(time(NULL));
   if (!buffer.loadFromFile("ressources/Avengers.wav"))
     return -1;
@@ -102,9 +102,9 @@ int main()
       window.clear();
       back1.update(window);
       back2.update(window);
-      obstacle->update(window);
+      obstacle->update(window, timee);
       if (obstacle->checkPlayerCollision(*current) == true)
-	goto start;
+        goto start;
 	//exit(0);
       events.update(total.getElapsedTime().asMicroseconds(), window);
 	    current->move(ACharacter::RIGHT, sf::Vector2f(0, 0), timee, back1.getGround(), back2.getGround());

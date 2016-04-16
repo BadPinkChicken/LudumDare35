@@ -4,7 +4,7 @@
 Captain::Captain() : ACharacter()
 {
   this->_texture = new sf::Texture();
-  this->_texture->loadFromFile("ressources//captainamerica.png");
+  this->_texture->loadFromFile("ressources/captainamerica.png");
   this->_texture->setSmooth(true);
   sf::Vector2i screenDimensions(200, HEIGHT - 110);
   this->_animate = new AnimatedSprite(sf::seconds(0.1), true, false);

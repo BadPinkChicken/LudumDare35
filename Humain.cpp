@@ -15,6 +15,7 @@ Humain::Humain() : ACharacter()
   this->_x = 0;
   this->_y = 0;
   this->_speed = 700;
+  this->_strengh = false;
   this->_jumpHeight = 300;
   this->_current = &((*this->_animations)[RIGHT]);
   this->_animate->setPosition(sf::Vector2f(screenDimensions));

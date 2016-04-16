@@ -1,5 +1,4 @@
-#ifndef DESTRUCTIBLE_OBSTACLE_HPP
-#define DESTRUCTIBLE_OBSTACLE_HPP
+#pragma once
 
 #include <SFML/System.hpp>
 #include "AObstacle.hpp"
@@ -7,8 +6,7 @@
 class DestructibleObstacle : public AObstacle
 {
 public:
-  DestructibleObstacle();
+  DestructibleObstacle(int x ,int y, std::string const &texture);
+  virtual void init();
   ~DestructibleObstacle();
 };
-
-#endif

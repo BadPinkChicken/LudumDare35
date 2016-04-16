@@ -16,6 +16,7 @@ Hulk::Hulk() : ACharacter()
   this->_y = 0;
   this->_speed = 700;
   this->_jumpHeight = 400;
+  this->_strengh = true;
   this->_current = &((*this->_animations)[RIGHT]);
   this->_animate->setPosition(sf::Vector2f(screenDimensions));
   this->_animate->play(*this->_current);

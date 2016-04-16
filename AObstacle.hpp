@@ -24,13 +24,17 @@ public:
   sf::Vector2f getVector() const;
   sf::Shape &getShape();
   virtual void init() = 0;
-  void update(sf::RenderWindow & win);
+  void update(sf::RenderWindow & win, const sf::Time& time);
   bool checkPlayerCollision(ACharacter &character);
+  void setFrames(ACharacter::animations anim, int sizeX, int sizeY, int line, int maxPerLine, int begin);
 protected:
   sf::Vector2f _vector2f;
   sf::Texture  _texture;
   bool _isDestructible;
   TYPE_OBSTACLE _type;
+  AnimatedSprite* _animate;
+  Animation*      _current;
+  std::vector<Animation>* _animations;
   sf::Shape *_shape;
   int _sizeX;
   int _sizeY;

@@ -3,7 +3,7 @@
 
 AObstacle::AObstacle()
 {
-
+  this->_animations = new std::vector<Animation>(20);
 }
 
 AObstacle::~AObstacle()
@@ -43,17 +43,40 @@ sf::Shape &AObstacle::getShape()
 
 bool AObstacle::checkPlayerCollision(ACharacter &character)
 {
-  return character.getAnimatedSprite().getGlobalBounds().intersects(this->_shape->getGlobalBounds());
+  if (character.getAnimatedSprite().getGlobalBounds().intersects(this->_animate->getGlobalBounds()) == true && _isDestructible == true && character.getStrength() == true)
+  {
+    this->_current = &(*this->_animations)[ACharacter::RIGHT];
+    return false;
+  }
+  return character.getAnimatedSprite().getGlobalBounds().intersects(this->_animate->getGlobalBounds());
 }
 
-void                AObstacle::update(sf::RenderWindow & win)
+void                AObstacle::update(sf::RenderWindow & win, const sf::Time& time)
 {
     sf::Vector2f    posTmp;
+    sf::Vector2f    coord(0, 0);
 
-    posTmp = this->_shape->getPosition();
+    posTmp = this->_animate->getPosition();
     posTmp.x -= SPEED;
     if (posTmp.x <= 0 - WIDTH)
+    {
+        this->_current = &(*this->_animations)[ACharacter::IDLE];
         posTmp.x = WIDTH;
-    this->_shape->setPosition(posTmp);
-    win.draw(*this->_shape);
+    }
+    this->_animate->setPosition(posTmp);
+    this->_animate->play(*this->_current);
+    this->_animate->update(time);
+    win.draw(*this->_animate);
+}
+
+void AObstacle::setFrames(ACharacter::animations anim, int sizeX, int sizeY, int line, int maxPerLine, int begin)
+{
+  int i;
+
+  i = begin;
+  while (i < begin + (maxPerLine * sizeX))
+  {
+    (*this->_animations)[anim].addFrame(sf::IntRect(i, line, sizeX, sizeY));
+    i += sizeX;
+  }
 }
