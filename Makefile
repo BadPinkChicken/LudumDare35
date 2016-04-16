@@ -1,6 +1,10 @@
 NAME		= ludum_dare
 
-SRCS		= main.cpp
+SRCS		= main.cpp \
+					ACharacter.cpp \
+					Humain.cpp \
+					AnimatedSprite.cpp \
+					Animation.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 
@@ -8,7 +12,7 @@ RM		= rm -rf
 
 GCC		= g++ -o
 
-CXXFLAGS	+= -Wall -Wextra -Werror -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -std=gnu++11
+CXXFLAGS	+= -Wall -Wextra -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -std=gnu++11
 CXXFLAGS	+= -Iincludes/
 
 all: $(NAME)
