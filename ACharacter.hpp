@@ -2,6 +2,7 @@
 #define ACHARACTER_HPP
 
 #include "AnimatedSprite.hpp"
+#include "data.hpp"
 #include <vector>
 
 class ACharacter
@@ -41,9 +42,9 @@ class ACharacter
       ATTACKF,
       ATTACKB,
     };
-  void  setFrames(animations move, int sizeX, int sizeY, int line, int maxPerLine, int begin);
-  void  move(animations move, const sf::Vector2f& coord, const sf::Time& time);
-
+  void setFrames(animations move, int sizeX, int sizeY, int line, int maxPerLine, int begin);
+  void move(animations move, sf::Vector2f coord, const sf::Time& time, sf::RectangleShape &back1, sf::RectangleShape &back2);
+  bool collide(sf::RectangleShape &back1, sf::RectangleShape &back2);
   protected:
     int _x;
     int _y;

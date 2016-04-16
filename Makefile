@@ -9,13 +9,14 @@ SRCS		= main.cpp \
 					AObstacle.cpp \
 					JumpObstacle.cpp \
 					SmallObstacle.cpp \
+					PowerEvent.cpp \
 					DestructibleObstacle.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 
 RM		= rm -rf
 
-GCC		= g++ -o
+GCC		= clang++ -o
 
 CXXFLAGS	+= -Wall -Wextra -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -std=gnu++11
 CXXFLAGS	+= -Iincludes/

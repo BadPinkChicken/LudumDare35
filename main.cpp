@@ -7,6 +7,24 @@
 #include "PowerEvent.hpp"
 #include <ctime>
 
+int handleEvents(ACharacter *character, const sf::Time& frameTime, Background &back1, Background &back2)
+{
+    sf::Vector2f movement(0.f, 0.f);
+    bool noKeyWasPressed = true;
+    static int jumped;
+
+    if (character->getAnimatedSprite().getPosition().y < character->getJumpHeight())
+        jumped = 1;
+    else if (jumped != 1 && sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && character->getAnimatedSprite().getPosition().y > character->getJumpHeight())
+    {
+        movement.y -= character->getSpeed();
+        character->move(ACharacter::UP, movement, frameTime, back1.getGround(), back2.getGround());
+        noKeyWasPressed = false;
+    }
+    if (character->collide(back1.getGround(), back2.getGround()) == true)
+        jumped = 0;
+}
+
 int main()
 {
     sf::RenderWindow    window(sf::VideoMode(WIDTH,HEIGHT), "SFML");
@@ -31,11 +49,12 @@ int main()
                 if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::E)
                     events.newEvent();
             }
+            handleEvents(humain, timee, back1, back2);
             window.clear();
             back1.update(window);
             back2.update(window);
             events.update(0, window);
-            humain->move(ACharacter::RIGHT, sf::Vector2f(0, 0), timee);
+            humain->move(ACharacter::RIGHT, sf::Vector2f(0, 0), timee, back1.getGround(), back2.getGround());
             window.draw(humain->getAnimatedSprite());
             window.display();
         }

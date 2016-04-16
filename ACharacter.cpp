@@ -1,4 +1,5 @@
 #include "ACharacter.hpp"
+#include <iostream>
 
 ACharacter::ACharacter()
 {
@@ -77,8 +78,23 @@ void ACharacter::setFrames(animations anim, int sizeX, int sizeY, int line, int 
   }
 }
 
-void ACharacter::move(animations move, const sf::Vector2f& coord, const sf::Time& time)
+bool ACharacter::collide(sf::RectangleShape &back1, sf::RectangleShape &back2)
 {
+  if (this->_animate->getGlobalBounds().intersects(back1.getGlobalBounds()) == false
+    && this->_animate->getGlobalBounds().intersects(back2.getGlobalBounds()) == false)
+      {
+        return false;
+      }
+  return true;
+}
+
+void ACharacter::move(animations move, sf::Vector2f coord, const sf::Time& time,
+  sf::RectangleShape &back1, sf::RectangleShape &back2)
+{
+  if (move == RIGHT && this->_animate->getGlobalBounds().intersects(back1.getGlobalBounds()) == false && this->_animate->getGlobalBounds().intersects(back2.getGlobalBounds()) == false)
+  {
+    coord.y = 350;
+  }
   this->_animate->play(*this->_current);
   this->_animate->move(coord * time.asSeconds());
   this->_animate->update(time);
