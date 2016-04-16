@@ -385,13 +385,15 @@
 	<string>
 	<vector>
 
-1460800856 c:\users\salnik_a\documents\github\ludumdare35\data.hpp
+1460809897 c:\users\salnik_a\documents\github\ludumdare35\data.hpp
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<iostream>
 	<list>
 	<vector>
+	<string>
+	<sstream>
 
 1460800714 source:c:\users\salnik_a\documents\github\ludumdare35\back.cpp
 	"back.hpp"
@@ -427,12 +429,13 @@
 	<SFML/System.hpp>
 	"AObstacle.hpp"
 
-1460807830 source:c:\users\salnik_a\documents\github\ludumdare35\powerevent.cpp
+1460810809 source:c:\users\salnik_a\documents\github\ludumdare35\powerevent.cpp
 	"PowerEvent.hpp"
 
-1460808054 c:\users\salnik_a\documents\github\ludumdare35\powerevent.hpp
+1460810305 c:\users\salnik_a\documents\github\ludumdare35\powerevent.hpp
 	"data.hpp"
 	"AObstacle.hpp"
+	<string>
 
 1460803952 c:\users\salnik_a\documents\github\ludumdare35\acharacter.hpp
 	"AnimatedSprite.hpp"

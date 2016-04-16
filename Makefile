@@ -1,6 +1,7 @@
 NAME		= ludum_dare
 
 SRCS		= main.cpp \
+<<<<<<< HEAD
 					ACharacter.cpp \
 					Humain.cpp \
 					AnimatedSprite.cpp \
@@ -11,6 +12,20 @@ SRCS		= main.cpp \
 					SmallObstacle.cpp \
 					PowerEvent.cpp \
 					DestructibleObstacle.cpp
+=======
+		ACharacter.cpp \
+		Humain.cpp \
+		AnimatedSprite.cpp \
+		Animation.cpp \
+		back.cpp \
+		AObstacle.cpp \
+		JumpObstacle.cpp \
+		SmallObstacle.cpp \
+		DestructibleObstacle.cpp \
+		PowerEvent.cpp \
+		Captain.cpp \
+		Hulk.cpp
+>>>>>>> 53f5819dccfbbed7c3a731cc48f46e812d0b1db4
 
 OBJS		= $(SRCS:.cpp=.o)
 

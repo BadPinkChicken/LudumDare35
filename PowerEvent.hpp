@@ -2,9 +2,11 @@
 
 #include "data.hpp"
 #include "AObstacle.hpp"
+#include <string>
 
 class   PowerEvent{
 private:
+    sf::Shape*                  backBlock;
     std::list<int>              keys;
     std::vector<sf::Shape *>    PowerList;
     //std::list<int>              CurrentKeys;
@@ -12,6 +14,10 @@ private:
     std::map<int, sf::Shape *>  CurrentPower;
     //std::vector<int>            CurrentCorresp;
     int                         time;
+    bool                        display;
+    sf::Font                    font;
+    sf::Text                    text;
+    sf::Text                    textKeys;
 
     public:
     PowerEvent();
