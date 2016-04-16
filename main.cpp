@@ -90,6 +90,22 @@ int main()
 		    transformation = events.getBlockType(3);
 		  else if (event.key.code == sf::Keyboard::Num4)
 		    transformation = events.getBlockType(4);
+
+		  switch ((int)transformation)
+		    {
+		      case 0:
+		      current = humain;
+		      break;
+		      case 1:
+		      current = hulk;
+		      break;
+		      case 2:
+		      current = rabbit;
+		      break;
+		      case 3:
+		      current = duck;
+              	      break;
+		    }
 		}
 	    }
 	}

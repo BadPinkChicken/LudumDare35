@@ -79,13 +79,15 @@ void    PowerEvent::newEvent()
      for (std::list<int>::iterator it = tmp2.begin(); it != tmp2.end(); it++) {
         this->CorrespKeys[i] = *it;
 
-        if (i =! 0)
-            tmpString += "           ";
-        tmpString += patch::to_string(*it);
-        i++;
+      if (i != 0)
+	tmpString += "           ";
+      tmpString += patch::to_string(*it);
+      i++;
     }
+  i = 0;
     for (std::list<int>::iterator it = tmp.begin(); it != tmp.end(); it++) {
-        this->CurrentPower[*it] = this->PowerList[*it];
+      this->CurrentPower[i] = *it;
+      i++;
     }
 
     this->textKeys.setString(tmpString);
@@ -99,18 +101,28 @@ int     PowerEvent::getTime() const
 CHARTYPE    PowerEvent::getBlockType(int key)
 {
     this->display = false;
-    if (DEBUG)
-        std::cout << "RECEIVED " << key << std::endl;
-    switch (key){
-    case 0:
-        break;
-    case 1:
-        break;
-    case 2:
-        break;
-    case 3:
-        break;
+  for (std::map<int, int>::iterator it = this->CorrespKeys.begin(); it != this->CorrespKeys.end(); it++)
+    {
+      if (it->second == key)
+	{
+	  switch (this->CurrentPower[it->first])
+	    {
+	      case 0:
+	      return HULK;
+      	      break;
+              case 1:
+	      return LITTLE;
+	      break;
+	      case 2:
+	      return DEFAULT;
+	      break;
+              case 3:
+	      return RABBIT;
+	      break;
+	    }
+	}
     }
+  return DEFAULT;
 }
 
 void    PowerEvent::killEvent()
@@ -140,16 +152,16 @@ void    PowerEvent::update(int time, sf::RenderWindow & win)
         return;
     this->text.setCharacterSize(64);
     this->text.setPosition(sf::Vector2f(610, 120));
-    this->textKeys.setPosition(sf::Vector2f(440, 250));
+    this->textKeys.setPosition(sf::Vector2f(500, 250));
     this->text.setColor(sf::Color::Yellow);
     this->text.setString(patch::to_string(this->time));
     win.draw(this->text);
     win.draw(*backBlock);
     win.draw(this->textKeys);
-    for (std::map<int, sf::Shape *>::iterator it = this->CurrentPower.begin(); it != this->CurrentPower.end(); it++)
+    for (std::map<int, int>::iterator it = this->CurrentPower.begin(); it != this->CurrentPower.end(); it++)
     {
-        it->second->setPosition(sf::Vector2f(i * 100 + 500, 200));
-        win.draw(*it->second);
+        this->PowerList[it->second]->setPosition(sf::Vector2f(i * 100 + 500, 200));
+        win.draw(*this->PowerList[it->second]);
         i++;
     }
 }

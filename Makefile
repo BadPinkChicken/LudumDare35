@@ -9,6 +9,7 @@ SRCS		= main.cpp \
 		AObstacle.cpp \
 		JumpObstacle.cpp \
 		SmallObstacle.cpp \
+		JumpRabbitObstacle.cpp \
 		DestructibleObstacle.cpp \
 		PowerEvent.cpp \
 		Rabbit.cpp \

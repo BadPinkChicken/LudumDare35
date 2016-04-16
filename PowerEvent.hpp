@@ -10,7 +10,7 @@ private:
     std::list<int>              keys;
     std::vector<sf::Shape *>    PowerList;
     std::map<int, int>          CorrespKeys;
-    std::map<int, sf::Shape *>  CurrentPower;
+    std::map<int, int>  CurrentPower;
     int                         time;
     bool                        display;
     sf::Font                    font;
