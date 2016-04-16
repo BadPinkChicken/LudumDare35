@@ -14,8 +14,8 @@ Duck::Duck() : ACharacter()
   this->setFrames(RIGHT, 44.99999, 49, 0, 4, 0);
   this->_x = 0;
   this->_y = 0;
-  this->_speed = 700;
-  this->_jumpHeight = 400;
+  this->_speed = 800;
+  this->_jumpHeight = 500;
   this->_current = &((*this->_animations)[RIGHT]);
   this->_animate->setPosition(sf::Vector2f(screenDimensions));
   this->_animate->play(*this->_current);
