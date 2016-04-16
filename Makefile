@@ -11,6 +11,7 @@ SRCS		= main.cpp \
 		SmallObstacle.cpp \
 		DestructibleObstacle.cpp \
 		PowerEvent.cpp \
+		Rabbit.cpp \
 		Captain.cpp \
 		Hulk.cpp
 
