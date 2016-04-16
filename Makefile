@@ -1,6 +1,10 @@
 NAME		= ludum_dare
 
-SRCS		= main.cpp
+SRCS		= main.cpp \
+		AObstacle.cpp \
+		JumpObstacle.cpp \
+		SmallObstacle.cpp \
+		DestructibleObstacle.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 
