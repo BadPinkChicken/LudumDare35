@@ -34,7 +34,17 @@ int handleEvents(ACharacter *character, const sf::Time& frameTime, Background &b
 
 int main()
 {
-  sf::RenderWindow    window(sf::VideoMode(WIDTH,HEIGHT), "SFML");
+  sf::RenderWindow    window(sf::VideoMode(WIDTH,HEIGHT), "Endless Shifter");
+  std::string		score = "";
+  sf::Font		font;
+  sf::Text		scoreText;
+  float			scoreint = 0;
+  if (!font.loadFromFile("ressources/talldark.ttf"))
+      return (-1);
+  scoreText.setFont(font);
+  scoreText.setStyle(sf::Text::Bold);
+  scoreText.setColor(sf::Color::Yellow);
+  scoreText.setCharacterSize(34);
   start:
   Background          back1("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), 0);
   Background          back2("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), WIDTH);
@@ -126,10 +136,14 @@ int main()
       if (obstacle->checkPlayerCollision(*current) == true)
         goto start;
 	//exit(0);
+      score = "Score  " + patch::to_string((int)scoreint);
+      scoreText.setString(score);
+      window.draw(scoreText);
       events.update(total.getElapsedTime().asMicroseconds(), window);
-	    current->move(ACharacter::RIGHT, sf::Vector2f(0, 0), timee, back1.getGround(), back2.getGround());
-	    window.draw(current->getAnimatedSprite());
-	    window.display();
-	}
+      current->move(ACharacter::RIGHT, sf::Vector2f(0, 0), timee, back1.getGround(), back2.getGround());
+      window.draw(current->getAnimatedSprite());
+      window.display();
+      scoreint += 0.2;
+    }
     return 0;
 }
