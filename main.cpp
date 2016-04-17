@@ -85,10 +85,10 @@ int	newGame(sf::RenderWindow &window)
   CHARTYPE   transformation;
   int start = 0;
   bool transform = false;
-  if (!texture.loadFromFile("ressources/smoke.png"))
-      std::cout << "ressources/smoke.png" <<": not found" << std::endl;
+  if (!texture.loadFromFile("ressources/smoke2.png"))
+      std::cout << "ressources/smoke2.png" <<": not found" << std::endl;
   _current.setSpriteSheet(texture);
-  setFrames(_current, 100, 100, 0, 3, 0);
+  setFrames(_current, 160, 200, 0, 6, 0);
 
   int last_time = 500000;
   window.setFramerateLimit(60);
@@ -142,7 +142,7 @@ int	newGame(sf::RenderWindow &window)
 	}
   if (start < 10 && transform == true)
   {
-    _animate.setPosition(sf::Vector2f(250, HEIGHT - 120));
+    _animate.setPosition(sf::Vector2f(250, HEIGHT - 200));
     _animate.play(_current);
     _animate.update(timee);
   }
