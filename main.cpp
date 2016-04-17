@@ -341,9 +341,9 @@ int main()
 {
   sf::RenderWindow    window(sf::VideoMode(WIDTH,HEIGHT), "Endless Shifter");
   sf::Font		font;
-  if (!font.loadFromFile("ressources/talldark.ttf"))
-    return -1;
-
+  if (!font.loadFromFile("./ressources/talldark.ttf"))
+    return -3;
+  srand(time(NULL));
   std::string		title = "<Insert Title here>";
   sf::RectangleShape	splash(sf::Vector2f(1920 / 1.8, 1080 / 1.8));
   sf::Texture		texture;
@@ -451,10 +451,10 @@ int main()
 	{
 	  if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
 	    window.close();
-	  mousePos = sf::Mouse::getPosition();
+	  mousePos = sf::Mouse::getPosition(window);
 	  if (mousePos.x > 600 && mousePos.x < 850)
 	    {
-	      if (mousePos.y > 300 && mousePos.y < 360)
+	      if (mousePos.y > 200 && mousePos.y < 260)
 		{
 		  play.setColor(sf::Color::Red);
 		  if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
@@ -465,7 +465,7 @@ int main()
 		}
 	      else
 		play.setColor(sf::Color::White);
-	      if (mousePos.y > 370 && mousePos.y < 430)
+	      if (mousePos.y > 270 && mousePos.y < 330)
 		{
 		  creds.setColor(sf::Color::Red);
 		  if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
@@ -473,7 +473,7 @@ int main()
 		}
 	      else
 		creds.setColor(sf::Color::White);
-	      if (mousePos.y > 440 && mousePos.y < 500)
+	      if (mousePos.y > 340 && mousePos.y < 400)
 		{
 		  quit.setColor(sf::Color::Red);
 		  if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
