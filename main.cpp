@@ -105,7 +105,7 @@ int	newGame(sf::RenderWindow &window)
 	    return 0;
 	  if (events.getDisplay())
 	    {
-	      if (event.type == sf::Event::KeyPressed)
+	      if (event.type == sf::Event::KeyPressed && event.key.code != sf::Keyboard::Space)
 		{
 		  if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::Q)
 		    transformation = events.getBlockType(1, window);
@@ -119,23 +119,22 @@ int	newGame(sf::RenderWindow &window)
 		    {
 		      case 0:
 		      current = humain;
-
 		      break;
 		      case 1:
 		      current = hulk;
-          transform = true;
-          start = 0;
+		      transform = true;
+		      start = 0;
 		      break;
 		      case 2:
 		      current = rabbit;
-          transform = true;
-          start = 0;
+		      transform = true;
+		      start = 0;
 		      break;
 		      case 3:
 		      current = duck;
-          transform = true;
-          start = 0;
-          break;
+		      transform = true;
+		      start = 0;
+		      break;
 		    }
 		}
 	    }
