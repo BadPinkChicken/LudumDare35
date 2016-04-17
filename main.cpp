@@ -9,11 +9,30 @@
 #include "JumpObstacle.hpp"
 #include "JumpRabbitObstacle.hpp"
 #include "JumpDuck.hpp"
-
+#include <fstream>
 #include "Duck.hpp"
 #include <ctime>
 #include <SFML/Audio.hpp>
 #include "DestructibleObstacle.hpp"
+
+bool compareScore(const std::string& first, const std::string& second)
+{
+  if (std::stoi(first) < std::stoi(second))
+    return false;
+  return true;
+}
+
+void loadScore(std::list<std::string> &_playerScore)
+{
+  std::ifstream infile("ressources/score.txt");
+  std::string line;
+  _playerScore.clear();
+  while (std::getline(infile, line))
+  {
+    _playerScore.push_back(line);
+  }
+  _playerScore.sort(compareScore);
+}
 
 void setFrames(Animation &current, int sizeX, int sizeY, int line, int maxPerLine, int begin)
 {
@@ -25,6 +44,14 @@ void setFrames(Animation &current, int sizeX, int sizeY, int line, int maxPerLin
     current.addFrame(sf::IntRect(i, line, sizeX, sizeY));
     i += sizeX;
   }
+}
+
+void saveScore(int score)
+{
+  std::ofstream outfile;
+
+  outfile.open("ressources/score.txt", std::ios_base::app);
+  outfile << std::to_string(score) << std::endl;
 }
 
 
@@ -182,7 +209,10 @@ int	newGame(sf::RenderWindow &window)
 	{
 	  obstacle->update(window, timee);
           if (obstacle->checkPlayerCollision(*current) == true)
-	    return 0;
+          {
+            saveScore(scoreint);
+            return 0;
+          }
 	  if (obstacle->getAnimatedSprite().getPosition().x < current->getAnimatedSprite().getPosition().x - 300 )
 	    current = humain;
 	  if (obstacle->getAnimatedSprite().getPosition().x > jumpObstacle->getAnimatedSprite().getPosition().x - 500 && obstacle->getAnimatedSprite().getPosition().x < jumpObstacle->getAnimatedSprite().getPosition().x + 500)
@@ -190,8 +220,10 @@ int	newGame(sf::RenderWindow &window)
 	}
       jumpObstacle->update(window, timee);
       if (jumpObstacle->checkPlayerCollision(*current) == true)
+      {
+        saveScore(scoreint);
         return 0;
-      //exit(0);
+      }
       score = "Score  " + patch::to_string((int)scoreint);
       scoreText.setString(score);
       window.draw(scoreText);
@@ -203,6 +235,7 @@ int	newGame(sf::RenderWindow &window)
       scoreint += 0.2;
       start ++;
     }
+  saveScore(scoreint);
   return 0;
 }
 
@@ -375,10 +408,14 @@ int main()
     sf::Text		play("Play", font, 60);
   sf::Text		creds("Credit", font, 60);
   sf::Text		quit("Exit", font, 60);
+  sf::Text    bigScore("Your best scores : ", font, 60);
+  sf::Text    score("Score", font, 30);
 
+  bigScore.setPosition(sf::Vector2f(1000, 100));
   play.setPosition(sf::Vector2f(600, 200));
   creds.setPosition(sf::Vector2f(600, 270));
   quit.setPosition(sf::Vector2f(600, 340));
+  score.setPosition(sf::Vector2f(-300, -300));
 
   Text.setFont(font);
   Text.setStyle(sf::Text::Bold);
@@ -390,12 +427,13 @@ int main()
   sf::Vector2i	mousePos;
   Text.setCharacterSize(64);
   Text.setString(title);
-  //  newGame(window);
+  score.setColor(sf::Color::Red);
 
   Background          back1("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), 0);
   Background          back2("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), WIDTH);
   sf::SoundBuffer buffer;
   sf::Sound sound;
+  std::list<std::string> _score;
 
   window.setFramerateLimit(60);
   srand(time(NULL));
@@ -404,6 +442,7 @@ int main()
   sound.setBuffer(buffer);
   sound.setLoop(true);
   sound.play();
+  loadScore(_score);
   while (window.isOpen())
     {
       sf::Event   event;
@@ -419,7 +458,10 @@ int main()
 		{
 		  play.setColor(sf::Color::Red);
 		  if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
+      {
 		    newGame(window);
+        loadScore(_score);
+      }
 		}
 	      else
 		play.setColor(sf::Color::White);
@@ -466,6 +508,21 @@ int main()
       window.draw(play);
       window.draw(creds);
       window.draw(quit);
+      if (_score.size() != 0)
+        window.draw(bigScore);
+      int i = 200;
+      int j = 1;
+      for (auto &it : _score)
+      {
+        score.setPosition(sf::Vector2f(1000, i));
+        score.setString(std::to_string(j) + "-           " + it);
+        i += 50;
+        j++;
+        window.draw(score);
+        if (j == 6)
+          break;
+      }
+      window.draw(score);
       window.display();
       window.setFramerateLimit(60);
     }

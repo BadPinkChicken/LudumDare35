@@ -1,4 +1,4 @@
-NAME		= ludum_dare
+NAME		= The_Duck_Reborn
 
 SRCS		= main.cpp \
 		ACharacter.cpp \
