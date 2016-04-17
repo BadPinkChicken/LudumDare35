@@ -60,8 +60,10 @@ void                AObstacle::update(sf::RenderWindow & win, const sf::Time& ti
     posTmp.x -= SPEED;
     if (posTmp.x <= 0 - WIDTH)
     {
-        this->_current = &(*this->_animations)[ACharacter::IDLE];
-        posTmp.x = WIDTH;
+
+      this->_current = &(*this->_animations)[ACharacter::IDLE];
+      return;
+      posTmp.x = WIDTH;
     }
     this->_animate->setPosition(posTmp);
     this->_animate->play(*this->_current);

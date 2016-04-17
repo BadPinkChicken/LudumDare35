@@ -52,12 +52,15 @@ static bool     isInList(std::list<int> &list, int nb)
     return false;
 }
 
-void    PowerEvent::newEvent()
+int    PowerEvent::newEvent(sf::RenderWindow & win)
 {
+
   this->display = true;
+  win.setFramerateLimit(5);
   this->killEvent();
   std::list<int>  tmp;
   std::list<int>  tmp2;
+  std::vector<int>  tmp3;
   int i = 0;
   int nb = rand() % 4 + 1;
   std::string tmpString;
@@ -67,6 +70,8 @@ void    PowerEvent::newEvent()
       while (isInList(tmp, nb))
 	nb = rand() % 4;
       tmp.push_back(nb);
+      if (nb != 2)
+	tmp3.push_back(nb);
     }
   nb = rand() % 4 + 1;
   for (int i = 0; i < 3; i++){
@@ -89,8 +94,8 @@ void    PowerEvent::newEvent()
       this->CurrentPower[i] = *it;
       i++;
     }
-
-    this->textKeys.setString(tmpString);
+  this->textKeys.setString(tmpString);
+  return (tmp3[rand() % tmp3.size()]);
 }
 
 int     PowerEvent::getTime() const
@@ -98,9 +103,10 @@ int     PowerEvent::getTime() const
     return this->time;
 }
 
-CHARTYPE    PowerEvent::getBlockType(int key)
+CHARTYPE    PowerEvent::getBlockType(int key, sf::RenderWindow & win)
 {
-    this->display = false;
+  this->display = false;
+  win.setFramerateLimit(60);
   for (std::map<int, int>::iterator it = this->CorrespKeys.begin(); it != this->CorrespKeys.end(); it++)
     {
       if (it->second == key)

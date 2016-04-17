@@ -19,10 +19,10 @@ private:
 
     public:
     PowerEvent();
-    void                newEvent();
+    int                newEvent(sf::RenderWindow &);
     int                 getTime() const;
     void                update(int time, sf::RenderWindow &);
-    CHARTYPE       getBlockType(int key);
+    CHARTYPE       getBlockType(int key, sf::RenderWindow & win);
     void                killEvent();
     bool                getDisplay() const;
 };
