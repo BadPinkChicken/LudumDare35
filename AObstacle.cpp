@@ -82,3 +82,8 @@ void AObstacle::setFrames(ACharacter::animations anim, int sizeX, int sizeY, int
     i += sizeX;
   }
 }
+
+AnimatedSprite& AObstacle::getAnimatedSprite()
+{
+  return *_animate;
+}

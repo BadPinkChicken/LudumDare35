@@ -15,7 +15,7 @@ JumpObstacle::JumpObstacle(int sizeX, int sizeY, std::string const &texture) : A
   _sizeY = sizeY;
   this->_animate = new AnimatedSprite(sf::seconds(0.1), true, false);
   (*this->_animations)[ACharacter::IDLE].setSpriteSheet(this->_texture);
-  this->setFrames(ACharacter::IDLE, 73, 120, 0, 7, 0);
+  this->setFrames(ACharacter::IDLE, 73, 110, 0, 7, 0);
 
   this->_current = &((*this->_animations)[ACharacter::IDLE]);
   this->_animate->setPosition(sf::Vector2f(screenDimensions));
@@ -25,7 +25,7 @@ JumpObstacle::JumpObstacle(int sizeX, int sizeY, std::string const &texture) : A
 
 void JumpObstacle::init()
 {
-  this->_animate->setPosition(sf::Vector2f(WIDTH, HEIGHT - 145));
+  this->_animate->setPosition(sf::Vector2f(WIDTH, HEIGHT - 125));
 }
 
 JumpObstacle::~JumpObstacle()

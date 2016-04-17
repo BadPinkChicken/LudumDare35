@@ -27,7 +27,9 @@ public:
   void update(sf::RenderWindow & win, const sf::Time& time);
   bool checkPlayerCollision(ACharacter &character);
   void setFrames(ACharacter::animations anim, int sizeX, int sizeY, int line, int maxPerLine, int begin);
-protected:
+  AnimatedSprite& getAnimatedSprite();
+
+  protected:
   sf::Vector2f _vector2f;
   sf::Texture  _texture;
   bool _isDestructible;

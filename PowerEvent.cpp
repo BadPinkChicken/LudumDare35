@@ -37,10 +37,10 @@ PowerEvent::PowerEvent()
     backBlock->setPosition(sf::Vector2f(480, 190));
     for (int i = 0; i < 4; i++)
         this->keys.push_back(i+1);
-    this->PowerList.push_back(block1);
-    this->PowerList.push_back(block2);
-    this->PowerList.push_back(block3);
-    this->PowerList.push_back(block4);
+  this->PowerList.push_back(block1);
+  this->PowerList.push_back(block2);
+  this->PowerList.push_back(block3);
+  this->PowerList.push_back(block4);
 }
 
 static bool     isInList(std::list<int> &list, int nb)
@@ -56,7 +56,7 @@ int    PowerEvent::newEvent(sf::RenderWindow & win)
 {
 
   this->display = true;
-  win.setFramerateLimit(5);
+  win.setFramerateLimit(25);
   this->killEvent();
   std::list<int>  tmp;
   std::list<int>  tmp2;
@@ -64,7 +64,7 @@ int    PowerEvent::newEvent(sf::RenderWindow & win)
   int i = 0;
   int nb = rand() % 4 + 1;
   std::string tmpString;
-  this->time = 10;
+  this->time = 5;
   nb = rand() % 4;
   for (int i = 0; i < 3; i++){
       while (isInList(tmp, nb))
@@ -86,7 +86,21 @@ int    PowerEvent::newEvent(sf::RenderWindow & win)
 
       if (i != 0)
 	tmpString += "           ";
-      tmpString += patch::to_string(*it);
+      switch(*it)
+	{
+	  case 1:
+          tmpString += "Q";
+	  break;
+	  case 2:
+          tmpString += "W";
+	  break;
+	  case 3:
+          tmpString += "E";
+	  break;
+	  case 4:
+          tmpString += "R";
+	  break;
+	}
       i++;
     }
   i = 0;
@@ -134,7 +148,7 @@ CHARTYPE    PowerEvent::getBlockType(int key, sf::RenderWindow & win)
 void    PowerEvent::killEvent()
 {
         this->CurrentPower.clear();
-        this->time = 10;
+        this->time = 5;
    /* while (this->CurrentPower.size() >0)
         this->CurrentPower.pop_front();*/
 }
@@ -151,8 +165,9 @@ void    PowerEvent::update(int time, sf::RenderWindow & win)
     }
     if (this->time == 0)
     {
-        this->display = false;
-        this->killEvent();
+      this->display = false;
+      win.setFramerateLimit(60);
+      this->killEvent();
     }
     if (!this->display)
         return;

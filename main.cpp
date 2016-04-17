@@ -39,6 +39,7 @@ int	newGame(sf::RenderWindow &window)
 {
   std::string		score = "";
   sf::Font		font;
+  bool			initObs = false;
   sf::Text		scoreText;
   int			currentObstacle;
   if (!font.loadFromFile("ressources/talldark.ttf"))
@@ -57,21 +58,21 @@ int	newGame(sf::RenderWindow &window)
   AObstacle *jumpObstacle = new JumpObstacle(120, 120, "ressources/Fire2.png");
   AObstacle *rabbitObstacle = new JumpRabbitObstacle(1000, 200, "ressources/RabbitJump.png");
   AObstacle *duckObstacle = new JumpDuck(0, 0, "ressources/DuckJump.png");
-  obstacle = jumpObstacle;
+  //obstacle = jumpObstacle;
   ACharacter	*humain = new Humain();
   ACharacter	*rabbit = new Rabbit();
   ACharacter	*hulk = new Hulk();
   ACharacter	*duck = new Duck();
   ACharacter	*current = humain;
-  sf::Time timee;
-  sf::Clock   total;
-  sf::Clock frameClock;
-  CHARTYPE   transformation;
+  sf::Time 	timee;
+  sf::Clock   	total;
+  sf::Clock 	frameClock;
+  CHARTYPE      transformation;
 
   int last_time = 500000;
   window.setFramerateLimit(60);
   srand(time(NULL));
-  obstacle->init();
+  jumpObstacle->init();
   while (window.isOpen())
     {
       timee = frameClock.restart();
@@ -81,44 +82,17 @@ int	newGame(sf::RenderWindow &window)
 	{
 	  if (event.type == sf::Event::Closed ||  event.key.code == sf::Keyboard::Escape)
 	    return 0;
-	  if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::E)
-	    {
-                    currentObstacle = events.newEvent(window);
-                    switch (currentObstacle) {
-          	          case 0:
-      		  obstacle = destructibleObstacle;
-      		  obstacle->init();
-      		  break;
-      		  case 1:
-      		  obstacle = duckObstacle;
-      		  obstacle->init();
-      		  break;
-      		  case 3:
-      		  obstacle = rabbitObstacle;
-      		  obstacle->init();
-      		  break;
-      		}
-	    }
-	  if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::R)
-	    current = humain;
-	  if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::T)
-	    current = rabbit;
-	  if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Y)
-	    current = hulk;
-	  if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::U)
-	    current = duck;
-
 	  if (events.getDisplay())
 	    {
 	      if (event.type == sf::Event::KeyPressed)
 		{
-		  if (event.key.code == sf::Keyboard::Num1)
+		  if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::Q)
 		    transformation = events.getBlockType(1, window);
-		  else if (event.key.code == sf::Keyboard::Num2)
+		  else if (event.key.code == sf::Keyboard::Z || event.key.code == sf::Keyboard::W)
 		    transformation = events.getBlockType(2, window);
-		  else if (event.key.code == sf::Keyboard::Num3)
+		  else if (event.key.code == sf::Keyboard::E)
 		    transformation = events.getBlockType(3, window);
-		  else if (event.key.code == sf::Keyboard::Num4)
+		  else if (event.key.code == sf::Keyboard::R)
 		    transformation = events.getBlockType(4, window);
 
 		  switch ((int)transformation)
@@ -143,6 +117,7 @@ int	newGame(sf::RenderWindow &window)
       if (total.getElapsedTime().asMicroseconds() - last_time > 6000000 && !events.getDisplay())
 	{
          currentObstacle = events.newEvent(window);
+	  initObs = true;
            switch (currentObstacle) {
              case 0:
              obstacle = destructibleObstacle;
@@ -156,16 +131,28 @@ int	newGame(sf::RenderWindow &window)
              obstacle = rabbitObstacle;
              obstacle->init();
              break;
-           }
-
+	    }
 	  last_time = total.getElapsedTime().asMicroseconds();
 	}
+      else if (jumpObstacle->getAnimatedSprite().getPosition().x < 0 && rand() % 200 == 30)
+	jumpObstacle->init();
+
       window.clear();
       back1.update(window);
       back2.update(window);
-      obstacle->update(window, timee);
-      if (obstacle->checkPlayerCollision(*current) == true)
-	return 0;
+      if (initObs)
+	{
+	  obstacle->update(window, timee);
+          if (obstacle->checkPlayerCollision(*current) == true)
+	    return 0;
+	  if (obstacle->getAnimatedSprite().getPosition().x < current->getAnimatedSprite().getPosition().x - 300 )
+	    current = humain;
+	  if (obstacle->getAnimatedSprite().getPosition().x > jumpObstacle->getAnimatedSprite().getPosition().x - 500 && obstacle->getAnimatedSprite().getPosition().x < jumpObstacle->getAnimatedSprite().getPosition().x + 500)
+	    jumpObstacle->getAnimatedSprite().setPosition(sf::Vector2f(-1, -1));
+	}
+      jumpObstacle->update(window, timee);
+      if (jumpObstacle->checkPlayerCollision(*current) == true)
+        return 0;
       //exit(0);
       score = "Score  " + patch::to_string((int)scoreint);
       scoreText.setString(score);
@@ -365,6 +352,7 @@ int main()
       window.draw(creds);
       window.draw(quit);
       window.display();
-        }
+      window.setFramerateLimit(60);
+    }
         return 0;
 }

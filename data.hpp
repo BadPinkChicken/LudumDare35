@@ -12,7 +12,7 @@
 
 #define DEBUG   true
 #define HEIGHT  600
-#define WIDTH   1200
+#define WIDTH   1600
 #define SPEED   20
 
 namespace patch
