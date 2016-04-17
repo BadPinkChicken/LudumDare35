@@ -307,8 +307,53 @@ int main()
 {
   sf::RenderWindow    window(sf::VideoMode(WIDTH,HEIGHT), "Endless Shifter");
   std::string		title = "<Insert Title here>";
-  sf::Font		font;
   sf::Text		Text;
+  sf::Vector2f	textPos;
+  int titlenb = rand()%7;
+  switch (titlenb)
+    {
+      case 0:
+      title = "Duck duck duck";
+      textPos.x = 525;
+      textPos.y = 50;
+      break;
+      case 1:
+      title = "Duck duck";
+      textPos.x = 575;
+      textPos.y = 50;
+
+      break;
+      case 2:
+      title = "The duck";
+      textPos.x = 625;
+      textPos.y = 50;
+
+      break;
+      case 3:
+      title = "The duck the bear and the blond haired surfer";
+      textPos.x = 400;
+      textPos.y = 50;
+
+      break;
+      case 4:
+      title = "Duck";
+      textPos.x = 625;
+      textPos.y = 50;
+
+      break;
+      case 5:
+      title = "The running duck";
+      textPos.x = 430;
+      textPos.y = 50;
+
+      break;
+      case 6:
+      title =" <Insert Title here>";
+      textPos.x = 425;
+      textPos.y = 50;
+      break;
+    }
+  sf::Font		font;
   if (!font.loadFromFile("ressources/talldark.ttf"))
     return -1;
 
@@ -316,21 +361,18 @@ int main()
   sf::Text		creds("Credit", font, 60);
   sf::Text		quit("Exit", font, 60);
 
-  play.setPosition(sf::Vector2f(500, 200));
-  creds.setPosition(sf::Vector2f(500, 270));
-  quit.setPosition(sf::Vector2f(500, 340));
+  play.setPosition(sf::Vector2f(600, 200));
+  creds.setPosition(sf::Vector2f(600, 270));
+  quit.setPosition(sf::Vector2f(600, 340));
 
   Text.setFont(font);
   Text.setStyle(sf::Text::Bold);
   Text.setColor(sf::Color::Yellow);
-  Text.setPosition(425, 50);
+
 
   int	textSize	= 64;
   bool	isGrowing = true;
-  sf::Vector2f	textPos;
   sf::Vector2i	mousePos;
-  textPos.x = 425;
-  textPos.y = 50;
   Text.setCharacterSize(64);
   Text.setString(title);
   //  newGame(window);
@@ -356,7 +398,7 @@ int main()
 	  if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
 	    window.close();
 	  mousePos = sf::Mouse::getPosition();
-	  if (mousePos.x > 500 && mousePos.x < 650)
+	  if (mousePos.x > 600 && mousePos.x < 850)
 	    {
 	      if (mousePos.y > 300 && mousePos.y < 360)
 		{
@@ -370,7 +412,7 @@ int main()
 		{
 		  creds.setColor(sf::Color::Red);
 		  if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
-                                        creds_func(window);
+		    creds_func(window);
 		}
 	      else
 		creds.setColor(sf::Color::White);
