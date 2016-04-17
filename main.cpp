@@ -15,6 +15,18 @@
 #include <SFML/Audio.hpp>
 #include "DestructibleObstacle.hpp"
 
+void setFrames(Animation &current, int sizeX, int sizeY, int line, int maxPerLine, int begin)
+{
+  int i;
+
+  i = begin;
+  while (i < begin + (maxPerLine * sizeX))
+  {
+    current.addFrame(sf::IntRect(i, line, sizeX, sizeY));
+    i += sizeX;
+  }
+}
+
 
 int handleEvents(ACharacter *character, const sf::Time& frameTime, Background &back1, Background &back2)
 {
@@ -64,10 +76,19 @@ int	newGame(sf::RenderWindow &window)
   ACharacter	*hulk = new Hulk();
   ACharacter	*duck = new Duck();
   ACharacter	*current = humain;
-  sf::Time 	timee;
-  sf::Clock   	total;
-  sf::Clock 	frameClock;
-  CHARTYPE      transformation;
+  AnimatedSprite _animate(sf::seconds(0.1), true, false);;
+  Animation      _current;
+  sf::Texture texture;
+  sf::Time timee;
+  sf::Clock   total;
+  sf::Clock frameClock;
+  CHARTYPE   transformation;
+  int start = 0;
+  bool transform = false;
+  if (!texture.loadFromFile("ressources/smoke.png"))
+      std::cout << "ressources/smoke.png" <<": not found" << std::endl;
+  _current.setSpriteSheet(texture);
+  setFrames(_current, 100, 100, 0, 3, 0);
 
   int last_time = 500000;
   window.setFramerateLimit(60);
@@ -94,25 +115,43 @@ int	newGame(sf::RenderWindow &window)
 		    transformation = events.getBlockType(3, window);
 		  else if (event.key.code == sf::Keyboard::R)
 		    transformation = events.getBlockType(4, window);
-
 		  switch ((int)transformation)
 		    {
 		      case 0:
 		      current = humain;
+
 		      break;
 		      case 1:
 		      current = hulk;
+          transform = true;
+          start = 0;
 		      break;
 		      case 2:
 		      current = rabbit;
+          transform = true;
+          start = 0;
 		      break;
 		      case 3:
 		      current = duck;
-		      break;
+          transform = true;
+          start = 0;
+          break;
 		    }
 		}
 	    }
 	}
+  if (start < 10 && transform == true)
+  {
+    _animate.setPosition(sf::Vector2f(250, HEIGHT - 120));
+    _animate.play(_current);
+    _animate.update(timee);
+  }
+  else
+  {
+        _animate.setPosition(sf::Vector2f(250, -1000));
+    transform = false;
+  }
+  if (last_time)
       handleEvents(current, timee, back1, back2);
       if (total.getElapsedTime().asMicroseconds() - last_time > 6000000 && !events.getDisplay())
 	{
@@ -160,8 +199,10 @@ int	newGame(sf::RenderWindow &window)
       events.update(total.getElapsedTime().asMicroseconds(), window);
       current->move(ACharacter::RIGHT, sf::Vector2f(0, 0), timee, back1.getGround(), back2.getGround());
       window.draw(current->getAnimatedSprite());
+      window.draw(_animate);
       window.display();
       scoreint += 0.2;
+      start ++;
     }
   return 0;
 }
