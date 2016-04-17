@@ -6,7 +6,7 @@ JumpObstacle::JumpObstacle(int sizeX, int sizeY, std::string const &texture) : A
 {
   sf::Vector2i screenDimensions(200, HEIGHT - 110);
   this->_type = JUMP;
-  this->_isDestructible = true;
+  this->_isDestructible = false;
   if (!this->_texture.loadFromFile(texture))
       std::cout << texture <<": texture loading error" << std::endl;
   this->_shape = new sf::RectangleShape(sf::Vector2f(sizeX, sizeY));

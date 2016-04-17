@@ -15,7 +15,7 @@ JumpRabbitObstacle::JumpRabbitObstacle(int sizeX, int sizeY, std::string const &
   _sizeY = sizeY;
   this->_animate = new AnimatedSprite(sf::seconds(0.10), true, false);
   (*this->_animations)[ACharacter::IDLE].setSpriteSheet(this->_texture);
-  this->setFrames(ACharacter::IDLE,100, 100, 0, 5, 0);
+  this->setFrames(ACharacter::IDLE,100, 250, 0, 1, 0);
 
   this->_current = &((*this->_animations)[ACharacter::IDLE]);
   this->_animate->setPosition(sf::Vector2f(screenDimensions));
@@ -25,7 +25,7 @@ JumpRabbitObstacle::JumpRabbitObstacle(int sizeX, int sizeY, std::string const &
 
 void JumpRabbitObstacle::init()
 {
-  this->_animate->setPosition(sf::Vector2f(WIDTH, 475));
+  this->_animate->setPosition(sf::Vector2f(WIDTH, 325));
 }
 
 JumpRabbitObstacle::~JumpRabbitObstacle()
