@@ -278,6 +278,7 @@ int	 creds_func(sf::RenderWindow & window)
       back2.update(window);
       window.draw(Text);
       window.draw(quit);
+      creds.setColor(sf::Color(rand()%255, rand()%255, rand()%255));
       creds.setString("Thanks to my parents for bringing me here tonight");
       creds.setPosition(sf::Vector2f(500, 200));
       window.draw(creds);
