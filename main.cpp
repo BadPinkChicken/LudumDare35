@@ -60,7 +60,7 @@ int	newGame(sf::RenderWindow &window)
   scoreText.setStyle(sf::Text::Bold);
   scoreText.setColor(sf::Color::Yellow);
   scoreText.setCharacterSize(34);
-  float			scoreint = 0;
+  float		      scoreint = 0;
   Background          back1("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), 0);
   Background          back2("ressources/background.png", "ressources/ground.png", sf::Vector2f(WIDTH, HEIGHT), sf::Vector2f(WIDTH, 64), WIDTH);
   PowerEvent          events;
@@ -307,7 +307,24 @@ int	 creds_func(sf::RenderWindow & window)
 int main()
 {
   sf::RenderWindow    window(sf::VideoMode(WIDTH,HEIGHT), "Endless Shifter");
+  sf::Font		font;
+  if (!font.loadFromFile("ressources/talldark.ttf"))
+    return -1;
+
   std::string		title = "<Insert Title here>";
+  sf::RectangleShape	splash(sf::Vector2f(1920 / 1.8, 1080 / 1.8));
+  sf::Texture		texture;
+  sf::Text	credsSplash("Image made by Chaserbrown", font, 30);
+  texture.loadFromFile("ressources/blue.png");
+  splash.setPosition(sf::Vector2f(300, 0));
+  splash.setTexture(&texture);
+  window.clear(sf::Color::Blue);
+  window.draw(splash);
+  window.draw(credsSplash);
+  window.display();
+  sf::Clock clock;
+  while (clock.getElapsedTime().asMilliseconds() < 6000)
+    (void) clock;
   sf::Text		Text;
   sf::Vector2f	textPos;
   int titlenb = rand()%7;
@@ -354,11 +371,8 @@ int main()
       textPos.y = 50;
       break;
     }
-  sf::Font		font;
-  if (!font.loadFromFile("ressources/talldark.ttf"))
-    return -1;
 
-  sf::Text		play("Play", font, 60);
+    sf::Text		play("Play", font, 60);
   sf::Text		creds("Credit", font, 60);
   sf::Text		quit("Exit", font, 60);
 
@@ -424,7 +438,7 @@ int main()
 		    window.close();
 		}
 	      else
-                                quit.setColor(sf::Color::White);
+		quit.setColor(sf::Color::White);
 	    }
 	}
 
