@@ -5,6 +5,7 @@ ACharacter::ACharacter()
 {
   this->_animations = new std::vector<Animation>(20);
   this->_lastAction = IDLE;
+  this->_bird = false;
 }
 
 int ACharacter::getX()
@@ -80,6 +81,8 @@ void ACharacter::setFrames(animations anim, int sizeX, int sizeY, int line, int 
 
 bool ACharacter::collide(sf::RectangleShape &back1, sf::RectangleShape &back2)
 {
+  if (_bird == true)
+    return false;
   if (this->_animate->getGlobalBounds().intersects(back1.getGlobalBounds()) == false
     && this->_animate->getGlobalBounds().intersects(back2.getGlobalBounds()) == false)
       {
@@ -91,7 +94,7 @@ bool ACharacter::collide(sf::RectangleShape &back1, sf::RectangleShape &back2)
 void ACharacter::move(animations move, sf::Vector2f coord, const sf::Time& time,
   sf::RectangleShape &back1, sf::RectangleShape &back2)
 {
-  if (move == RIGHT && this->_animate->getGlobalBounds().intersects(back1.getGlobalBounds()) == false && this->_animate->getGlobalBounds().intersects(back2.getGlobalBounds()) == false)
+  if (_bird == false && move == RIGHT && this->_animate->getGlobalBounds().intersects(back1.getGlobalBounds()) == false && this->_animate->getGlobalBounds().intersects(back2.getGlobalBounds()) == false)
   {
     coord.y = this->_speed / 2;
   }
@@ -100,3 +103,7 @@ void ACharacter::move(animations move, sf::Vector2f coord, const sf::Time& time,
   this->_animate->update(time);
 }
 
+bool ACharacter::getBird()
+{
+  return _bird;
+}

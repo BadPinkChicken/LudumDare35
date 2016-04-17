@@ -45,12 +45,14 @@ class ACharacter
   void setFrames(animations move, int sizeX, int sizeY, int line, int maxPerLine, int begin);
   void move(animations move, sf::Vector2f coord, const sf::Time& time, sf::RectangleShape &back1, sf::RectangleShape &back2);
   bool collide(sf::RectangleShape &back1, sf::RectangleShape &back2);
+  bool getBird();
   protected:
     int _x;
     int _y;
     int _speed;
     int _jumpHeight;
     bool _strengh;
+    bool _bird;
     AnimatedSprite* _animate;
     Animation*      _current;
     std::vector<Animation>* _animations;
