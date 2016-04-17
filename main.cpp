@@ -213,7 +213,7 @@ int	 creds_func(sf::RenderWindow & window)
   sf::Text		Text;
   if (!font.loadFromFile("ressources/talldark.ttf"))
     return -1;
-
+  sf::Text		creds("", font, 35);
   sf::Text		quit("Back to menu", font, 60);
 
   quit.setPosition(sf::Vector2f(500, 490));
@@ -222,7 +222,6 @@ int	 creds_func(sf::RenderWindow & window)
   Text.setStyle(sf::Text::Bold);
   Text.setColor(sf::Color::Yellow);
   Text.setPosition(525, 50);
-
   int	textSize	= 64;
   bool	isGrowing = true;
   sf::Vector2f	textPos;
@@ -279,6 +278,25 @@ int	 creds_func(sf::RenderWindow & window)
       back2.update(window);
       window.draw(Text);
       window.draw(quit);
+      creds.setString("Thanks to my parents for bringing me here tonight");
+      creds.setPosition(sf::Vector2f(500, 200));
+      window.draw(creds);
+      creds.setString("And to the duck");
+      creds.setPosition(sf::Vector2f(500, 240));
+      window.draw(creds);
+      creds.setString("danilo_d Dimitri Danilov");
+      creds.setPosition(sf::Vector2f(500, 280));
+      window.draw(creds);
+      creds.setString("salnik_a Alexis Salnikoff");
+      creds.setPosition(sf::Vector2f(500, 320));
+      window.draw(creds);
+      creds.setString("bocque_c Celestin Bocquet");
+      creds.setPosition(sf::Vector2f(500, 360));
+      window.draw(creds);
+      creds.setString("besnai_m Michael Besnainou");
+      creds.setPosition(sf::Vector2f(500, 400));
+      window.draw(creds);
+
       window.display();
     }
   return 0;
