@@ -16,6 +16,8 @@ private:
     sf::Font                    font;
     sf::Text                    text;
     sf::Text                    textKeys;
+	sf::SoundBuffer				buffer;
+	sf::Sound					bip;
 
     public:
     PowerEvent();

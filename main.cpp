@@ -12,8 +12,15 @@
 #include <fstream>
 #include "Duck.hpp"
 #include <ctime>
-#include <SFML/Audio.hpp>
 #include "DestructibleObstacle.hpp"
+#include <Windows.h>
+
+int SPEED = 20;
+
+void ErrorMsg(std::string error, std::string title)
+{
+	MessageBoxA(NULL, error.c_str(), title.c_str(), MB_ICONERROR | MB_OK);
+}
 
 bool compareScore(const std::string& first, const std::string& second)
 {
@@ -81,8 +88,51 @@ int	newGame(sf::RenderWindow &window)
   bool			initObs = false;
   sf::Text		scoreText;
   int			currentObstacle;
+  sf::SoundBuffer buffer;
+  sf::SoundBuffer buffer2;
+  sf::SoundBuffer buffer3;
+  sf::SoundBuffer buffer4;
+  sf::Sound bird;
+  sf::Sound hulkS;
+  sf::Sound poussinS;
+  sf::Sound jumpS;
+  std::list<std::string> _score;
+  SPEED = 20;
+  window.setFramerateLimit(60);
+  srand(time(NULL));
+  if (!buffer.loadFromFile("ressources/bird.wav")) 
+  {
+	  ErrorMsg("Couldn't load ressources/bird.wav", "Error while loading ressources");
+	  return -1;
+  }
+  bird.setBuffer(buffer);
+  bird.setLoop(false);
+  if (!buffer2.loadFromFile("ressources/jump.wav"))
+  {
+	  ErrorMsg("Couldn't load ressources/bird.wav", "Error while loading ressources");
+	  return -1;
+  }
+  jumpS.setBuffer(buffer2);
+  jumpS.setLoop(false);
+  if (!buffer3.loadFromFile("ressources/poussin.wav"))
+  {
+	  ErrorMsg("Couldn't load ressources/bird.wav", "Error while loading ressources");
+	  return -1;
+  }
+  poussinS.setBuffer(buffer3);
+  poussinS.setLoop(false);
+  if (!buffer4.loadFromFile("ressources/bear.wav"))
+  {
+	  ErrorMsg("Couldn't load ressources/bird.wav", "Error while loading ressources");
+	  return -1;
+  }
+  hulkS.setBuffer(buffer4);
+  hulkS.setLoop(false);
   if (!font.loadFromFile("ressources/talldark.ttf"))
-    return -1;
+  {
+	  ErrorMsg("Couldn't load ressources/talldark.ttf", "Error while loading ressources");
+	  return -1;
+  }
   scoreText.setFont(font);
   scoreText.setStyle(sf::Text::Bold);
   scoreText.setColor(sf::Color::Yellow);
@@ -113,10 +163,14 @@ int	newGame(sf::RenderWindow &window)
   int start = 0;
   bool transform = false;
   if (!texture.loadFromFile("ressources/smoke2.png"))
-      std::cout << "ressources/smoke2.png" <<": not found" << std::endl;
+  {
+	  ErrorMsg("Couldn't load ressources/smoke2.png", "Error while loading ressources");
+	  return -1;
+  }
   _current.setSpriteSheet(texture);
   setFrames(_current, 160, 200, 0, 6, 0);
 
+  bool isOkJump = true;
   int last_time = 500000;
   window.setFramerateLimit(60);
   srand(time(NULL));
@@ -130,6 +184,15 @@ int	newGame(sf::RenderWindow &window)
 	{
 	  if (event.type == sf::Event::Closed ||  event.key.code == sf::Keyboard::Escape)
 	    return 0;
+	  if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space && isOkJump)
+	  {
+		  jumpS.play();
+		  isOkJump = false;
+	  }
+	  if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Space)
+	  {
+		  isOkJump = true;
+	  }
 	  if (events.getDisplay())
 	    {
 	      if (event.type == sf::Event::KeyPressed && event.key.code != sf::Keyboard::Space)
@@ -149,16 +212,19 @@ int	newGame(sf::RenderWindow &window)
 		      break;
 		      case 1:
 		      current = hulk;
+			  hulkS.play();
 		      transform = true;
 		      start = 0;
 		      break;
 		      case 2:
 		      current = rabbit;
+			  bird.play();
 		      transform = true;
 		      start = 0;
 		      break;
 		      case 3:
 		      current = duck;
+			  poussinS.play();
 		      transform = true;
 		      start = 0;
 		      break;
@@ -245,7 +311,10 @@ int	 creds_func(sf::RenderWindow & window)
   sf::Font		font;
   sf::Text		Text;
   if (!font.loadFromFile("ressources/talldark.ttf"))
-    return -1;
+  {
+	  ErrorMsg("Couldn't load ressources/talldark.ttf", "Error while loading ressources");
+	  return -1;
+  }
   sf::Text		creds("", font, 35);
   sf::Text		quit("Back to menu", font, 60);
 
@@ -275,10 +344,10 @@ int	 creds_func(sf::RenderWindow & window)
 	{
 	  if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
 	    window.close();
-	  mousePos = sf::Mouse::getPosition();
+	  mousePos = sf::Mouse::getPosition(window);
 	  if (mousePos.x > 500 && mousePos.x < 650)
 	    {
-	      if (mousePos.y > 590 && mousePos.y < 650)
+	      if (mousePos.y > 490 && mousePos.y < 550)
 		{
 		  quit.setColor(sf::Color::Red);
 		  if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
@@ -339,16 +408,23 @@ int	 creds_func(sf::RenderWindow & window)
 
 int main()
 {
-  sf::RenderWindow    window(sf::VideoMode(WIDTH,HEIGHT), "Endless Shifter");
+  sf::RenderWindow    window(sf::VideoMode(WIDTH,HEIGHT), "The Duck : Reborn");
   sf::Font		font;
   if (!font.loadFromFile("./ressources/talldark.ttf"))
-    return -3;
+  {
+	  ErrorMsg("Couldn't load ressources/talldark.ttf", "Error while loading ressources");
+	  return -1;
+  }
   srand(time(NULL));
   std::string		title = "<Insert Title here>";
   sf::RectangleShape	splash(sf::Vector2f(1920 / 1.8, 1080 / 1.8));
   sf::Texture		texture;
   sf::Text	credsSplash("Image made by Chaserbrown", font, 30);
-  texture.loadFromFile("ressources/blue.png");
+  if (!texture.loadFromFile("ressources/blue.png"))
+  {
+	  ErrorMsg("Couldn't load ressources/blue.png", "Error while loading ressources");
+	  return -1;
+  }
   splash.setPosition(sf::Vector2f(300, 0));
   splash.setTexture(&texture);
   window.clear(sf::Color::Blue);
@@ -438,11 +514,17 @@ int main()
   window.setFramerateLimit(60);
   srand(time(NULL));
   if (!buffer.loadFromFile("ressources/Avengers.wav"))
-    return -1;
+  {
+	  ErrorMsg("Couldn't load ressources/Avengers.wav", "Error while loading ressources");
+	  return -1;
+  }
+    
   sound.setBuffer(buffer);
   sound.setLoop(true);
   sound.play();
   loadScore(_score);
+
+
   while (window.isOpen())
     {
       sf::Event   event;
@@ -453,18 +535,18 @@ int main()
 	    window.close();
 	  mousePos = sf::Mouse::getPosition(window);
 	  if (mousePos.x > 600 && mousePos.x < 850)
-	    {
-	      if (mousePos.y > 200 && mousePos.y < 260)
 		{
-		  play.setColor(sf::Color::Red);
-		  if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
-      {
-		    newGame(window);
-        loadScore(_score);
-      }
-		}
+		 if (mousePos.y > 200 && mousePos.y < 260)
+			{
+			  play.setColor(sf::Color::Red);
+			  if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
+				{
+		        newGame(window);
+		        loadScore(_score);
+		        }
+			}
 	      else
-		play.setColor(sf::Color::White);
+			play.setColor(sf::Color::White);
 	      if (mousePos.y > 270 && mousePos.y < 330)
 		{
 		  creds.setColor(sf::Color::Red);

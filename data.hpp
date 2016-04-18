@@ -3,17 +3,20 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
 
 #include <iostream>
 #include <list>
 #include <vector>
 #include <string>
 #include <sstream>
+#include <Windows.h>
 
 #define DEBUG   true
 #define HEIGHT  600
 #define WIDTH   1600
-#define SPEED   20
+
+extern int SPEED;
 
 namespace patch
 {
@@ -31,3 +34,5 @@ enum    CHARTYPE{
         RABBIT,
         LITTLE
 };
+
+void ErrorMsg(std::string error, std::string title);

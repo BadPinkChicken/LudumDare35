@@ -41,6 +41,10 @@ PowerEvent::PowerEvent()
   this->PowerList.push_back(block2);
   this->PowerList.push_back(block3);
   this->PowerList.push_back(block4);
+  if (!this->buffer.loadFromFile("ressources/bip.wav"))
+	  exit(-1);
+  this->bip.setBuffer(buffer);
+  this->bip.setLoop(false);
 }
 
 static bool     isInList(std::list<int> &list, int nb)
@@ -56,7 +60,7 @@ int    PowerEvent::newEvent(sf::RenderWindow & win)
 {
 
   this->display = true;
-  win.setFramerateLimit(25);
+  SPEED = 10;
   this->killEvent();
   std::list<int>  tmp;
   std::list<int>  tmp2;
@@ -120,7 +124,7 @@ int     PowerEvent::getTime() const
 CHARTYPE    PowerEvent::getBlockType(int key, sf::RenderWindow & win)
 {
   this->display = false;
-  win.setFramerateLimit(60);
+  SPEED = 20;
   for (std::map<int, int>::iterator it = this->CorrespKeys.begin(); it != this->CorrespKeys.end(); it++)
     {
       if (it->second == key)
@@ -160,13 +164,15 @@ void    PowerEvent::update(int time, sf::RenderWindow & win)
 
     if (time - last_time > 600000)
     {
+		if (this->display)
+			this->bip.play();
         this->time--;
         last_time = time;
     }
     if (this->time == 0)
     {
       this->display = false;
-      win.setFramerateLimit(60);
+	  SPEED = 20;
       this->killEvent();
     }
     if (!this->display)
