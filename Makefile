@@ -1,27 +1,27 @@
 NAME		= The_Duck_Reborn
 
-SRCS		= main.cpp \
-		ACharacter.cpp \
-		Humain.cpp \
-		AnimatedSprite.cpp \
-		Animation.cpp \
-		back.cpp \
-		AObstacle.cpp \
-		JumpObstacle.cpp \
-		JumpDuck.cpp \
-		DestructibleObstacle.cpp \
-		PowerEvent.cpp \
-		JumpRabbitObstacle.cpp \
-		Rabbit.cpp \
-		Captain.cpp \
-		Hulk.cpp \
-		Duck.cpp
+SRCS		= src/main.cpp \
+		src/ACharacter.cpp \
+		src/Humain.cpp \
+		src/AnimatedSprite.cpp \
+		src/Animation.cpp \
+		src/back.cpp \
+		src/AObstacle.cpp \
+		src/JumpObstacle.cpp \
+		src/JumpDuck.cpp \
+		src/DestructibleObstacle.cpp \
+		src/PowerEvent.cpp \
+		src/JumpRabbitObstacle.cpp \
+		src/Rabbit.cpp \
+		src/Captain.cpp \
+		src/Hulk.cpp \
+		src/Duck.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 
 RM		= rm -rf
 
-GCC		= clang++ -o
+GCC		= g++ -o
 
 CXXFLAGS	+= -Wall -Wextra -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -std=gnu++11
 CXXFLAGS	+= -Iincludes/
